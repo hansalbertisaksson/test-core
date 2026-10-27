@@ -40,7 +40,7 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: var(--space-edge);
+  padding: var(--space-edge) var(--space-page);
   font-size: var(--size-md);
   line-height: var(--leading-tight);
   text-transform: uppercase;
@@ -52,7 +52,7 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
 /* Fixed corner text, bottom left. */
 .site-corner {
   position: fixed;
-  left: var(--space-edge);
+  left: var(--space-page);
   bottom: var(--space-edge);
   z-index: 10;
   font-size: var(--size-md);
@@ -73,7 +73,8 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
   text-align: center;
   text-wrap: balance;
 }
-.display-section { min-height: 80vh; display: grid; place-items: center; padding-inline: var(--space-page); }
+.display-section { min-height: 80vh; display: grid; place-items: center; padding: var(--space-24) var(--space-page); }
+.display-section .display { max-width: 16ch; }
 
 .title { font-size: var(--size-2xl); line-height: var(--leading-display); letter-spacing: var(--tracking-tight); text-transform: uppercase; }
 .lede { font-size: var(--size-lg); line-height: var(--leading-tight); letter-spacing: -0.01em; max-width: 40ch; }
@@ -84,14 +85,14 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-gutter);
-  padding-block: var(--space-12);
+  gap: var(--space-8);
+  padding-block: var(--space-16);
 }
 .split > :first-child { font-size: var(--size-lg); line-height: var(--leading-tight); text-transform: uppercase; }
 .split > * + * { font-size: var(--size-lg); line-height: var(--leading-tight); }
 
 /* Image grid with hairline gutters and an uppercase caption under each tile. */
-.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6) var(--space-gutter); }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-8) var(--space-4); }
 .tiles.four { grid-template-columns: repeat(4, 1fr); }
 .tile { display: grid; gap: var(--space-3); }
 .tile-media { aspect-ratio: 9 / 10; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-paper-raised); }
