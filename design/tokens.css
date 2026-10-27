@@ -8,6 +8,11 @@
   --color-accent: #ff4f1f;
   --color-accent-ink: #ffffff;
   --color-focus: #2b6cff;
+  --color-ok: #1f7a46;
+  --color-warn: #a8650f;
+  --color-block: #c0362c;
+  --color-terminal: #1b1b1b;
+  --color-terminal-ink: #e9e6e1;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;

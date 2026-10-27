@@ -4,7 +4,7 @@ These rules apply to every project built on this core. They are read by Claude, 
 
 ## How we build
 
-1. Start from the brief in `docs/brief.md`. If it is empty, ask what the prototype is for and who it is for before building anything, and write the answers there.
+1. Start from the brief in `docs/brief.md`. If it says it is not filled in yet, run the `kickoff` skill first: ask its questions one at a time and write the answers there before building anything.
 2. Build from the design system. Use the CSS variables in `.core/design/tokens.css` for colour, type, spacing and radius. Never hard-code a colour or font. If a token is missing, say so and use the closest one.
 3. A prototype is a rough first draft for designers to take further. Keep it simple, readable and easy to change. Plain HTML, CSS and a little JavaScript are enough unless the brief says otherwise.
 4. Put everything that ships in `site/`. That folder is what gets published.
@@ -26,6 +26,7 @@ Run `.core/hooks/checks/run.sh` to check the project. The same checks run in git
 
 Skills live in `.core/skills/`. Use them when the task matches:
 
+- `kickoff` for starting a new prototype and writing the brief
 - `build-prototype` for building or changing a page
 - `use-design-tokens` for anything visual
 - `ship-prototype` for publishing and sharing the live link

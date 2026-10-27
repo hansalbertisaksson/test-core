@@ -5,7 +5,7 @@ description: Build or change a page in a Build Kit prototype. Use when asked to 
 
 # Build a prototype page
 
-1. Read `docs/brief.md`. If it does not say who the prototype is for and what it should show, ask, and write the answers into the brief before building.
+1. Read `docs/brief.md`. If it is not filled in yet, run the `kickoff` skill first.
 2. Work only in `site/`. `site/index.html` is the start page. Add more pages as `site/<name>.html` and link them from the start page.
 3. Every page loads the shared design files first:
 

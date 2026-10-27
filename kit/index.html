@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How this prototype is built</title>
+  <link rel="stylesheet" href="../core/tokens.css">
+  <link rel="stylesheet" href="../core/base.css">
+  <link rel="stylesheet" href="kit.css">
+</head>
+<body>
+  <main class="container">
+    <nav class="kit-nav"><a href="../">← Back to the prototype</a></nav>
+
+    <header class="kit-hero">
+      <p class="eyebrow">Build Kit</p>
+      <h1>How this prototype is built</h1>
+      <p class="muted lead">Every prototype starts from the same shared core. Skills tell the AI how we build. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
+      <dl class="meta" id="meta"></dl>
+    </header>
+
+    <section class="kit-section">
+      <h2>The flow</h2>
+      <ol class="flow">
+        <li><span class="flow-n">1</span><strong>Kickoff</strong><span class="muted">In a new project the AI asks eight short questions first and writes the brief.</span></li>
+        <li><span class="flow-n">2</span><strong>Skills</strong><span class="muted">Claude and Copilot follow the house rules and skills from the core.</span></li>
+        <li><span class="flow-n">3</span><strong>Checks</strong><span class="muted">Run on commit, after the AI edits a file, and in CI before anything goes live.</span></li>
+        <li><span class="flow-n">4</span><strong>Live</strong><span class="muted">Every push to main is published here within about a minute.</span></li>
+      </ol>
+    </section>
+
+    <section class="kit-section">
+      <h2>Skills</h2>
+      <p class="muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
+      <div class="skills" id="skills"></div>
+    </section>
+
+    <section class="kit-section">
+      <h2>Hooks</h2>
+      <p class="muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
+      <div class="hooks">
+        <article class="card hook">
+          <p class="hook-when">When a session starts</p>
+          <h3>Kickoff or context</h3>
+          <p class="muted">New project: the AI is told to ask the kickoff questions before anything else. Existing project: it gets the brief, so nobody explains it again.</p>
+        </article>
+        <article class="card hook">
+          <p class="hook-when">Before the AI edits a file</p>
+          <h3>Brief first</h3>
+          <p class="muted">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p>
+        </article>
+        <article class="card hook">
+          <p class="hook-when">After the AI edits a file</p>
+          <h3>Check and fix</h3>
+          <p class="muted">The checks run straight away. If one blocks, the AI gets the reason back and fixes the cause itself.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="kit-section">
+      <h2>Checks</h2>
+      <p class="muted">The same plain scripts run in three places. Only CI is required. The others just tell you sooner.</p>
+      <ul class="where">
+        <li><strong>git commit</strong><span class="muted">pre-commit hook</span></li>
+        <li><strong>After the AI edits</strong><span class="muted">Claude hook, it fixes the cause itself</span></li>
+        <li class="where-required"><strong>CI on every push</strong><span class="muted">required, nothing goes live without it</span></li>
+      </ul>
+      <div class="checks" id="checks"></div>
+    </section>
+
+    <section class="kit-section">
+      <h2>See it catch something</h2>
+      <p class="muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
+      <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
+Build Kit checks, profile: prototype
+  <span class="t-block">FAIL</span>  secrets
+        site/form.js:12: looks like a secret
+  <span class="t-block">FAIL</span>  personal-data
+        site/sample.json:3: looks like a personal identity number
+  <span class="t-ok">ok</span>    file-size
+  <span class="t-warn">warn</span>  raw-colors
+        site/styles.css:24: hard-coded colour, use var(--color-*)
+A blocking check failed. Fix the cause, do not turn the check off.</pre>
+    </section>
+
+    <section class="kit-section">
+      <h2>Stricter as the risk goes up</h2>
+      <p class="muted">The profile decides which checks block and which only warn. This project uses <strong id="profile-name"></strong>.</p>
+      <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    </section>
+
+    <section class="kit-section">
+      <h2>House rules</h2>
+      <p class="muted">Read by Claude, GitHub Copilot and any agent that follows <code>AGENTS.md</code>.</p>
+      <div class="card rules" id="rules"></div>
+    </section>
+  </main>
+  <script src="kit.js"></script>
+</body>
+</html>

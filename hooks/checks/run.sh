@@ -35,6 +35,11 @@ while read -r mode check; do
   case "$mode" in ''|\#*) continue ;; esac
   output="$("$CHECKS_DIR/$check.sh" 2>&1)"
   status=$?
+  # Optional machine-readable report, used by the build to show results on the kit page.
+  if [ -n "${BUILDKIT_REPORT:-}" ]; then
+    result="ok"; [ $status -ne 0 ] && result="$mode"
+    printf '%s\t%s\t%s\t%s\n' "$check" "$mode" "$result" "$(printf '%s' "$output" | head -5 | tr '\n\t' '  ')" >> "$BUILDKIT_REPORT"
+  fi
   if [ $status -eq 0 ]; then
     echo "  ok    $check"
   elif [ "$mode" = "block" ]; then

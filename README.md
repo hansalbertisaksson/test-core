@@ -13,9 +13,10 @@ Start a new project from [template-prototype](https://github.com/hansalbertisaks
 | `skills/` | Step-by-step skills, one folder per skill with a `SKILL.md` |
 | `hooks/checks/` | Plain shell checks (secrets, personal data, file size, raw colours) |
 | `hooks/profiles/` | Which checks block and which only warn, per profile |
-| `hooks/adapters/` | Thin wrappers that run the checks from git and from Claude |
+| `hooks/adapters/` | Git pre-commit, plus Claude hooks for kickoff, locking and checks |
 | `.github/workflows/` | Reusable CI that runs the checks and deploys to GitHub Pages |
 | `docs-template/` | The starting knowledge files for a new project |
+| `kit/` | The "How this prototype is built" page every project publishes at `/kit/` |
 
 ## Profiles
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Looks for Swedish and Norwegian personal identity numbers in the files listed in $FILES.
+# Looks for Swedish and Norwegian personal identity numbers.
 # Prototypes use fake sample data only.
 pattern='\b(19|20)?[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[-+][0-9]{4}\b|\b(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])[0-9]{2} ?[0-9]{5}\b'
 found=0

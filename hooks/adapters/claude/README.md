@@ -1,18 +1,27 @@
 # Claude Code adapter
 
-Projects wire this up in `.claude/settings.json`:
+Three hooks, wired up in each project's `.claude/settings.json`:
+
+| Hook | Script | What it does |
+| --- | --- | --- |
+| `SessionStart` | `session-start.sh` | New project: tells Claude to run the kickoff questions. Existing project: hands Claude the brief. |
+| `PreToolUse` on Write/Edit | `before-edit.sh` | Locks `site/` until the brief exists. Keeps `.core/` read-only. |
+| `PostToolUse` on Write/Edit | `after-edit.sh` | Runs the checks after every edit. A blocking failure goes back to Claude to fix. |
 
 ```json
 {
   "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.core/hooks/adapters/claude/session-start.sh" }] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Write|Edit|MultiEdit", "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.core/hooks/adapters/claude/before-edit.sh" }] }
+    ],
     "PostToolUse": [
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.core/hooks/adapters/claude/after-edit.sh" }]
-      }
+      { "matcher": "Write|Edit|MultiEdit", "hooks": [{ "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.core/hooks/adapters/claude/after-edit.sh" }] }
     ]
   }
 }
 ```
 
-GitHub Copilot reads `AGENTS.md` and the skills, and CI runs the same checks on every push, so it needs no adapter of its own for now.
+GitHub Copilot has no hooks like these yet. It reads `AGENTS.md`, whose first rule asks for the brief before building, and CI runs the same checks on every push.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Looks for API keys, tokens and private keys in the files listed in $FILES.
+# Looks for API keys, tokens and private keys.
 patterns='(AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_-]{35}|-----BEGIN [A-Z ]*PRIVATE KEY-----)'
 found=0
 while read -r f; do
