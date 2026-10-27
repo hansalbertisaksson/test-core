@@ -9,69 +9,68 @@
   <link rel="stylesheet" href="kit.css">
 </head>
 <body>
-  <main class="container">
-    <nav class="kit-nav"><a href="../">← Back to the prototype</a></nav>
+  <nav class="site-nav">
+    <a href="../">Back to the prototype<small>Build Kit</small></a>
+    <a href="#skills">Skills</a>
+    <a href="#hooks">Hooks</a>
+    <a href="#checks">Checks</a>
+    <a href="#rules">House rules</a>
+  </nav>
 
-    <header class="kit-hero">
-      <p class="eyebrow">Build Kit</p>
-      <h1>How this prototype is built</h1>
-      <p class="muted lead">Every prototype starts from the same shared core. Skills tell the AI how we build. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
-      <dl class="meta" id="meta"></dl>
-    </header>
-
-    <section class="kit-section">
-      <h2>The flow</h2>
-      <ol class="flow">
-        <li><span class="flow-n">1</span><strong>Kickoff</strong><span class="muted">In a new project the AI asks eight short questions first and writes the brief.</span></li>
-        <li><span class="flow-n">2</span><strong>Skills</strong><span class="muted">Claude and Copilot follow the house rules and skills from the core.</span></li>
-        <li><span class="flow-n">3</span><strong>Checks</strong><span class="muted">Run on commit, after the AI edits a file, and in CI before anything goes live.</span></li>
-        <li><span class="flow-n">4</span><strong>Live</strong><span class="muted">Every push to main is published here within about a minute.</span></li>
-      </ol>
+  <main>
+    <section class="display-section">
+      <h1 class="display">The one with the shared core</h1>
     </section>
 
-    <section class="kit-section">
-      <h2>Skills</h2>
-      <p class="muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
-      <div class="skills" id="skills"></div>
-    </section>
+    <div class="page">
+      <section class="split">
+        <h2>How it's built</h2>
+        <div>
+          <p>Every prototype starts from the same shared core. Skills tell the AI how we build. Hooks steer it while it works. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
+          <dl class="meta" id="meta"></dl>
+        </div>
+      </section>
 
-    <section class="kit-section">
-      <h2>Hooks</h2>
-      <p class="muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
-      <div class="hooks">
-        <article class="card hook">
-          <p class="hook-when">When a session starts</p>
-          <h3>Set up, then kickoff</h3>
-          <p class="muted">Fetches the shared core and starts a local preview. New project: the AI is told to ask the kickoff questions before anything else. Existing project: it gets the brief, so nobody explains it again.</p>
-        </article>
-        <article class="card hook">
-          <p class="hook-when">Before the AI edits a file</p>
-          <h3>Brief first</h3>
-          <p class="muted">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p>
-        </article>
-        <article class="card hook">
-          <p class="hook-when">After the AI edits a file</p>
-          <h3>Check and fix</h3>
-          <p class="muted">The preview rebuilds and the checks run straight away. If one blocks, the AI gets the reason back and fixes the cause itself.</p>
-        </article>
-      </div>
-    </section>
+      <section class="tiles four flow">
+        <div class="tile"><div class="tile-media flow-step flow-1"><span>01</span></div><span class="tile-caption">The one with the kickoff questions</span></div>
+        <div class="tile"><div class="tile-media flow-step flow-2"><span>02</span></div><span class="tile-caption">The one where the skills guide the AI</span></div>
+        <div class="tile"><div class="tile-media flow-step flow-3"><span>03</span></div><span class="tile-caption">The one where checks catch mistakes</span></div>
+        <div class="tile"><div class="tile-media flow-step flow-4"><span>04</span></div><span class="tile-caption">The one that's live in a minute</span></div>
+      </section>
 
-    <section class="kit-section">
-      <h2>Checks</h2>
-      <p class="muted">The same plain scripts run in three places. Only CI is required. The others just tell you sooner.</p>
-      <ul class="where">
-        <li><strong>git commit</strong><span class="muted">pre-commit hook</span></li>
-        <li><strong>After the AI edits</strong><span class="muted">Claude hook, it fixes the cause itself</span></li>
-        <li class="where-required"><strong>CI on every push</strong><span class="muted">required, nothing goes live without it</span></li>
-      </ul>
-      <div class="checks" id="checks"></div>
-    </section>
+      <section class="split" id="skills">
+        <h2>Skills</h2>
+        <div>
+          <p class="muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
+          <div class="rows" id="skills-list"></div>
+        </div>
+      </section>
 
-    <section class="kit-section">
-      <h2>See it catch something</h2>
-      <p class="muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
-      <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
+      <section class="split" id="hooks">
+        <h2>Hooks</h2>
+        <div>
+          <p class="muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
+          <div class="rows">
+            <div class="row"><p class="label muted">When a session starts</p><h3 class="row-title">Set up, then kickoff</h3><p class="row-text">Fetches the shared core and starts a local preview. In a new project the AI asks the kickoff questions before anything else. Otherwise it gets the brief, so nobody explains it again.</p></div>
+            <div class="row"><p class="label muted">Before the AI edits a file</p><h3 class="row-title">Brief first</h3><p class="row-text">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p></div>
+            <div class="row"><p class="label muted">After the AI edits a file</p><h3 class="row-title">Check and fix</h3><p class="row-text">The preview rebuilds and the checks run straight away. If one blocks, the AI gets the reason back and fixes the cause itself.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="split" id="checks">
+        <h2>Checks</h2>
+        <div>
+          <p class="muted">The same plain scripts run on commit, after the AI edits, and in CI on every push. Only CI is required. Nothing goes live without it.</p>
+          <div class="rows" id="checks-list"></div>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2>See it catch something</h2>
+        <div>
+          <p class="muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
+          <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
 Build Kit checks, profile: prototype
   <span class="t-block">FAIL</span>  secrets
         site/form.js:12: looks like a secret
@@ -81,20 +80,25 @@ Build Kit checks, profile: prototype
   <span class="t-warn">warn</span>  raw-colors
         site/styles.css:24: hard-coded colour, use var(--color-*)
 A blocking check failed. Fix the cause, do not turn the check off.</pre>
-    </section>
+        </div>
+      </section>
 
-    <section class="kit-section">
-      <h2>Stricter as the risk goes up</h2>
-      <p class="muted">The profile decides which checks block and which only warn. This project uses <strong id="profile-name"></strong>.</p>
-      <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
-    </section>
+      <section class="split">
+        <h2>Stricter as the risk goes up</h2>
+        <div>
+          <p class="muted">The profile decides which checks block and which only warn. This project uses <span id="profile-name"></span>.</p>
+          <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+        </div>
+      </section>
 
-    <section class="kit-section">
-      <h2>House rules</h2>
-      <p class="muted">Read by Claude, GitHub Copilot and any agent that follows <code>AGENTS.md</code>.</p>
-      <div class="card rules" id="rules"></div>
-    </section>
+      <section class="split" id="rules">
+        <h2>House rules</h2>
+        <div class="rules" id="rules-text"></div>
+      </section>
+    </div>
   </main>
+
+  <div class="site-corner">Build Kit<br>Shared core<br><span id="corner-version"></span></div>
   <script src="kit.js"></script>
 </body>
 </html>

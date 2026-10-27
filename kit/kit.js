@@ -35,35 +35,36 @@ const renderMarkdown = (md) => {
 };
 
 const resultBadge = (result) => {
-  if (result === "ok") return el("span", { class: "badge badge-ok" }, "passed");
+  if (result === "ok") return el("span", { class: "badge badge-result-ok" }, "passed");
   if (result === "warn") return el("span", { class: "badge badge-result-warn" }, "warning");
   if (result === "block") return el("span", { class: "badge badge-result-block" }, "failed");
   return el("span", { class: "badge badge-none" }, "not run");
 };
 
+const modeBadge = (mode) => el("span", { class: `badge badge-${mode}` }, mode === "block" ? "blocks" : "warns");
+
 fetch("kit.json")
   .then((response) => response.json())
   .then((kit) => {
-    const meta = document.getElementById("meta");
     const repoLink = kit.repository ? el("a", { href: `https://github.com/${kit.repository}` }, kit.repository) : "local build";
-    [["Profile", kit.profile], ["Project", repoLink], ["Core version", kit.core_version], ["Built", kit.built_at]]
-      .forEach(([label, value]) => meta.append(el("div", {}, el("dt", {}, label), el("dd", {}, value))));
+    [["Profile", kit.profile], ["Project", repoLink], ["Core", kit.core_version], ["Built", kit.built_at]]
+      .forEach(([label, value]) => document.getElementById("meta").append(el("dt", {}, label), el("dd", {}, value)));
+    document.getElementById("corner-version").textContent = kit.core_version || "";
 
-    document.getElementById("skills").append(...kit.skills.map((skill) =>
-      el("article", { class: "card skill" },
-        el("h3", {}, skill.name),
-        el("p", { class: "muted" }, skill.description),
-        ...(skill.questions.length ? [el("details", { open: "" }, el("summary", {}, `The ${skill.questions.length} questions`), el("ol", {}, skill.questions.map((q) => el("li", {}, inline(q)))))] : []),
+    document.getElementById("skills-list").append(...kit.skills.map((skill) =>
+      el("div", { class: "row" },
+        el("h3", { class: "row-title" }, skill.name.replace(/-/g, " ")),
+        el("p", { class: "row-text" }, skill.description),
+        ...(skill.questions.length ? [el("details", {}, el("summary", {}, `The ${skill.questions.length} questions`), el("ol", {}, skill.questions.map((q) => el("li", {}, inline(q)))))] : []),
         el("details", {}, el("summary", {}, `${skill.steps.length} steps`), el("ol", {}, skill.steps.map((step) => el("li", {}, inline(step)))))
       )
     ));
 
-    document.getElementById("checks").append(...kit.checks.map((check) =>
-      el("div", { class: "check" },
-        el("div", {}, el("div", { class: "check-name" }, check.check), el("div", { class: "check-desc" }, check.description)),
-        el("span", { class: `badge badge-mode badge-${check.mode}` }, check.mode === "block" ? "blocks" : "warns"),
-        resultBadge(check.result),
-        ...(check.message ? [el("div", { class: "check-msg" }, check.message)] : [])
+    document.getElementById("checks-list").append(...kit.checks.map((check) =>
+      el("div", { class: "row" },
+        el("div", { class: "row-head" }, el("h3", { class: "row-title" }, check.check.replace(/-/g, " ")), el("div", { class: "row-badges" }, modeBadge(check.mode), resultBadge(check.result))),
+        el("p", { class: "row-text" }, check.description),
+        ...(check.message ? [el("p", { class: "row-message" }, check.message)] : [])
       )
     ));
 
@@ -73,15 +74,14 @@ fetch("kit.json")
     const matrix = document.getElementById("matrix");
     matrix.append(el("thead", {}, el("tr", {}, el("th", {}, "Check"), names.map((name) => el("th", { class: name === kit.profile ? "current" : "" }, name)))));
     matrix.append(el("tbody", {}, allChecks.map((check) =>
-      el("tr", {}, el("td", {}, check), names.map((name) => {
+      el("tr", {}, el("td", {}, check.replace(/-/g, " ")), names.map((name) => {
         const row = kit.profiles[name].find((r) => r.check === check);
-        const cell = row ? el("span", { class: `badge badge-${row.mode}` }, row.mode === "block" ? "blocks" : "warns") : "–";
-        return el("td", { class: name === kit.profile ? "current" : "" }, cell);
+        return el("td", {}, row ? modeBadge(row.mode) : "–");
       }))
     )));
 
-    document.getElementById("rules").append(...renderMarkdown(kit.house_rules));
+    document.getElementById("rules-text").append(...renderMarkdown(kit.house_rules));
   })
   .catch(() => {
-    document.getElementById("skills").append(el("p", { class: "muted" }, "Could not load kit.json. Run the build to generate it."));
+    document.getElementById("skills-list").append(el("p", { class: "muted" }, "Could not load kit.json. Run the build to generate it."));
   });

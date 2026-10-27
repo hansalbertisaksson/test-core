@@ -1,6 +1,8 @@
-/* Base styles built on tokens.css. Projects load this after tokens.css.
-   The look follows doberman.co: black, white, uppercase grotesk, square corners, yellow as the signal colour.
-   Gerstner-Programm is a licensed font and is not included. It is used where installed, otherwise Helvetica Neue or Arial. */
+/* Base styles built on tokens.css, after doberman.co.
+   Type does the work: one grotesk, uppercase for navigation and labels, huge centred display lines,
+   large sentence-case body text, edge-to-edge image grids with hairline gutters, no boxes or shadows.
+   Dark by default. Add class="theme-light" to <body> for the white case-study look.
+   Gerstner-Programm is licensed and not included. It is used where installed, otherwise Helvetica Neue. */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -9,56 +11,117 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: var(--size-md);
-  line-height: 1.4;
+  line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
 }
-
-h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: var(--tracking-tight);
-  text-transform: uppercase;
-  margin: 0 0 var(--space-4);
+body.theme-light {
+  --color-ink: var(--color-black);
+  --color-paper: var(--color-white);
+  --color-paper-raised: var(--color-raised-light);
+  --color-line: var(--color-grey-light);
+  --color-ink-soft: var(--color-ink-soft-light);
+  --color-accent: var(--color-black);
+  --color-accent-ink: var(--color-white);
 }
-h1 { font-size: clamp(var(--size-2xl), 7vw, var(--size-3xl)); }
-h2 { font-size: var(--size-xl); }
-h3 { font-size: var(--size-lg); line-height: 1.1; }
-p { margin: 0 0 var(--space-4); max-width: 62ch; }
-a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-a:hover { color: var(--color-accent); }
+
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+a { color: inherit; text-decoration: none; }
+a:hover, .is-current { font-style: italic; }
 :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+::selection { background: var(--color-ink); color: var(--color-paper); }
+img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
 
-.container { width: min(100% - 2 * var(--space-4), 90rem); margin-inline: auto; }
-
-.button {
-  display: inline-block;
-  padding: var(--space-3) var(--space-6);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-md);
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
-  font: inherit;
-  font-weight: 500;
+/* Top navigation: items spread edge to edge, uppercase, with a grey second line under the first. */
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-edge);
+  font-size: var(--size-md);
+  line-height: var(--leading-tight);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  text-decoration: none;
-  cursor: pointer;
+  mix-blend-mode: difference;
+  color: var(--color-white);
 }
-.button:hover { background: transparent; color: var(--color-accent); }
+.site-nav small { display: block; font-size: inherit; color: var(--color-ink-soft); }
 
-.card {
-  background: var(--color-paper-raised);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
+/* Fixed corner text, bottom left. */
+.site-corner {
+  position: fixed;
+  left: var(--space-edge);
+  bottom: var(--space-edge);
+  z-index: 10;
+  font-size: var(--size-md);
+  line-height: 1;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  color: var(--color-white);
 }
 
-.label {
+.page { padding: var(--space-40) var(--space-page) var(--space-24); }
+
+/* Huge centred line, the way case studies open. */
+.display {
+  font-size: var(--size-3xl);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+}
+.display-section { min-height: 80vh; display: grid; place-items: center; padding-inline: var(--space-page); }
+
+.title { font-size: var(--size-2xl); line-height: var(--leading-display); letter-spacing: var(--tracking-tight); text-transform: uppercase; }
+.lede { font-size: var(--size-lg); line-height: var(--leading-tight); letter-spacing: -0.01em; max-width: 40ch; }
+.label { font-size: var(--size-md); line-height: var(--leading-tight); text-transform: uppercase; }
+.muted { color: var(--color-ink-soft); }
+
+/* Label on the left, text from the middle. */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-gutter);
+  padding-block: var(--space-12);
+}
+.split > :first-child { font-size: var(--size-lg); line-height: var(--leading-tight); text-transform: uppercase; }
+.split > * + * { font-size: var(--size-lg); line-height: var(--leading-tight); }
+
+/* Image grid with hairline gutters and an uppercase caption under each tile. */
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6) var(--space-gutter); }
+.tiles.four { grid-template-columns: repeat(4, 1fr); }
+.tile { display: grid; gap: var(--space-3); }
+.tile-media { aspect-ratio: 9 / 10; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-paper-raised); }
+.tile-caption { text-transform: uppercase; line-height: var(--leading-tight); }
+.tile-caption::after { content: " \2192"; }
+
+/* Outlined pill, used for tags and buttons. */
+.pill, .button {
+  display: inline-block;
+  padding: 0.15em 0.75em;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font: inherit;
   font-size: var(--size-sm);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
 }
+.pill:hover, .button:hover { background: var(--color-ink); color: var(--color-paper); font-style: normal; }
 
-.muted { color: var(--color-ink-soft); }
+.arrow-link::before { content: "\21AC  "; font-size: 0.7em; vertical-align: 0.15em; }
+
+.rule { border: 0; border-top: 1px solid var(--color-line); margin: 0; }
+
+@media (max-width: 48rem) {
+  .site-nav { flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--size-sm); }
+  .site-nav > :first-child { flex-basis: 100%; }
+  .page { padding-top: var(--space-24); }
+  .split, .tiles, .tiles.four { grid-template-columns: 1fr; }
+  .split { gap: var(--space-3); }
+  .site-corner { display: none; }
+}
