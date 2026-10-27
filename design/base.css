@@ -1,4 +1,6 @@
-/* Base styles built on tokens.css. Projects load this after tokens.css. */
+/* Base styles built on tokens.css. Projects load this after tokens.css.
+   The look follows doberman.co: black, white, uppercase grotesk, square corners, yellow as the signal colour.
+   Gerstner-Programm is a licensed font and is not included. It is used where installed, otherwise Helvetica Neue or Arial. */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -7,38 +9,56 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: var(--size-md);
-  line-height: 1.55;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1; margin: 0 0 var(--space-4); }
-h1 { font-size: clamp(var(--size-2xl), 6vw, var(--size-3xl)); }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+h1 { font-size: clamp(var(--size-2xl), 7vw, var(--size-3xl)); }
 h2 { font-size: var(--size-xl); }
-h3 { font-size: var(--size-lg); }
+h3 { font-size: var(--size-lg); line-height: 1.1; }
 p { margin: 0 0 var(--space-4); max-width: 62ch; }
-a { color: inherit; text-decoration-color: var(--color-accent); text-underline-offset: 0.2em; }
-:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--color-accent); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
 
-.container { width: min(100% - 2 * var(--space-4), 72rem); margin-inline: auto; }
+.container { width: min(100% - 2 * var(--space-4), 90rem); margin-inline: auto; }
 
 .button {
   display: inline-block;
   padding: var(--space-3) var(--space-6);
-  border: 0;
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
   background: var(--color-accent);
   color: var(--color-accent-ink);
   font: inherit;
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
   text-decoration: none;
   cursor: pointer;
 }
+.button:hover { background: transparent; color: var(--color-accent); }
 
 .card {
   background: var(--color-paper-raised);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
+}
+
+.label {
+  font-size: var(--size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
 }
 
 .muted { color: var(--color-ink-soft); }
