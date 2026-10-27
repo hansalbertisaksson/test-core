@@ -24,7 +24,7 @@ fi
 if [ "${1:-}" = "--staged" ]; then
   FILES="$(git diff --cached --name-only --diff-filter=ACM)"
 else
-  FILES="$(git ls-files 2>/dev/null || find . -type f -not -path './.git/*')"
+  FILES="$(git ls-files --cached --others --exclude-standard 2>/dev/null || find . -type f -not -path './.git/*')"
 fi
 FILES="$(printf '%s\n' "$FILES" | grep -v -e '^\.core/' -e '^\.core$' -e '^_site/' -e '^site/core/' | while read -r f; do [ -f "$f" ] && printf '%s\n' "$f"; done)"
 export FILES

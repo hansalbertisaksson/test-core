@@ -4,95 +4,74 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How this prototype is built</title>
-  <link rel="stylesheet" href="../core/tokens.css">
-  <link rel="stylesheet" href="../core/base.css">
   <link rel="stylesheet" href="kit.css">
 </head>
 <body>
-  <nav class="site-nav">
-    <a href="../">← Back to the prototype</a>
-    <div class="site-nav-links"><a href="#skills">Skills</a><a href="#hooks">Hooks</a><a href="#checks">Checks</a><a href="#rules">Rules</a></div>
-  </nav>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="btn btn-ghost" href="../">← Back to the prototype</a>
+      <nav class="topbar-links"><a href="#skills">Skills</a><a href="#hooks">Hooks</a><a href="#checks">Checks</a><a href="#rules">Rules</a></nav>
+    </div>
+  </header>
 
-  <main>
-    <section class="display-section">
-      <h1 class="display">How this prototype is built</h1>
+  <main class="container">
+    <section class="hero">
+      <span class="badge badge-secondary">Build Kit</span>
+      <h1>How this prototype is built</h1>
+      <p class="lead">Every prototype starts from the same shared core. Skills tell the AI how we build. Hooks steer it while it works. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
+      <dl class="meta" id="meta"></dl>
     </section>
 
-    <div class="page">
-      <section class="split">
-        <h2>How it's built</h2>
-        <div>
-          <p class="lede">Every prototype starts from the same shared core. Skills tell the AI how we build. Hooks steer it while it works. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
-          <dl class="meta" id="meta"></dl>
-        </div>
-      </section>
+    <section class="steps">
+      <div class="card"><span class="step-num">1</span><h3>Kickoff questions</h3><p class="muted">A short brief before anything is built.</p></div>
+      <div class="card"><span class="step-num">2</span><h3>Skills guide the AI</h3><p class="muted">Every page is built from shadcn/ui components.</p></div>
+      <div class="card"><span class="step-num">3</span><h3>Checks catch mistakes</h3><p class="muted">Secrets and personal data never ship.</p></div>
+      <div class="card"><span class="step-num">4</span><h3>Live in a minute</h3><p class="muted">Every push to main publishes a live link.</p></div>
+    </section>
 
-      <section class="tiles four flow">
-        <div class="tile"><div class="tile-media flow-step flow-1"><span>01</span></div><span class="tile-caption">Kickoff questions</span></div>
-        <div class="tile"><div class="tile-media flow-step flow-2"><span>02</span></div><span class="tile-caption">Skills guide the AI</span></div>
-        <div class="tile"><div class="tile-media flow-step flow-3"><span>03</span></div><span class="tile-caption">Checks catch mistakes</span></div>
-        <div class="tile"><div class="tile-media flow-step flow-4"><span>04</span></div><span class="tile-caption">Live in a minute</span></div>
-      </section>
+    <section class="section" id="skills">
+      <div class="section-head"><h2>Skills</h2><p class="muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p></div>
+      <div class="card rows" id="skills-list"></div>
+    </section>
 
-      <section class="split" id="skills">
-        <h2>Skills</h2>
-        <div>
-          <p class="lede muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
-          <div class="rows" id="skills-list"></div>
-        </div>
-      </section>
+    <section class="section" id="hooks">
+      <div class="section-head"><h2>Hooks</h2><p class="muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p></div>
+      <div class="card rows">
+        <div class="row"><p class="eyebrow">When a session starts</p><h3 class="row-title">Set up, then kickoff</h3><p class="row-text">Fetches the shared core, installs the app and starts a local preview. In a new project the AI asks the kickoff questions before anything else. Otherwise it gets the brief, so nobody explains it again.</p></div>
+        <div class="row"><p class="eyebrow">Before the AI edits a file</p><h3 class="row-title">Brief first</h3><p class="row-text">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p></div>
+        <div class="row"><p class="eyebrow">After the AI edits a file</p><h3 class="row-title">Check and fix</h3><p class="row-text">The checks run straight away. If one blocks, the AI gets the reason back and fixes the cause itself.</p></div>
+      </div>
+    </section>
 
-      <section class="split" id="hooks">
-        <h2>Hooks</h2>
-        <div>
-          <p class="lede muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
-          <div class="rows">
-            <div class="row"><p class="label muted">When a session starts</p><h3 class="row-title">Set up, then kickoff</h3><p class="row-text">Fetches the shared core and starts a local preview. In a new project the AI asks the kickoff questions before anything else. Otherwise it gets the brief, so nobody explains it again.</p></div>
-            <div class="row"><p class="label muted">Before the AI edits a file</p><h3 class="row-title">Brief first</h3><p class="row-text">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p></div>
-            <div class="row"><p class="label muted">After the AI edits a file</p><h3 class="row-title">Check and fix</h3><p class="row-text">The preview rebuilds and the checks run straight away. If one blocks, the AI gets the reason back and fixes the cause itself.</p></div>
-          </div>
-        </div>
-      </section>
+    <section class="section" id="checks">
+      <div class="section-head"><h2>Checks</h2><p class="muted">The same plain scripts run on commit, after the AI edits, and in CI on every push. Only CI is required. Nothing goes live without it.</p></div>
+      <div class="card rows" id="checks-list"></div>
+    </section>
 
-      <section class="split" id="checks">
-        <h2>Checks</h2>
-        <div>
-          <p class="lede muted">The same plain scripts run on commit, after the AI edits, and in CI on every push. Only CI is required. Nothing goes live without it.</p>
-          <div class="rows" id="checks-list"></div>
-        </div>
-      </section>
-
-      <section class="split">
-        <h2>See it catch something</h2>
-        <div>
-          <p class="lede muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
-          <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
+    <section class="section">
+      <div class="section-head"><h2>See it catch something</h2><p class="muted">What happens if someone, or the AI, tries to commit an API key, a real personal identity number and a hand-made button.</p></div>
+      <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
 Build Kit checks, profile: prototype
   <span class="t-block">FAIL</span>  secrets
-        site/form.js:12: looks like a secret
+        src/api.ts:12: looks like a secret
   <span class="t-block">FAIL</span>  personal-data
-        site/sample.json:3: looks like a personal identity number
+        src/data.ts:3: looks like a personal identity number
   <span class="t-ok">ok</span>    file-size
-  <span class="t-warn">warn</span>  raw-colors
-        site/styles.css:24: hard-coded colour, use var(--color-*)
+  <span class="t-ok">ok</span>    raw-colors
+  <span class="t-warn">warn</span>  ui-components
+        src/App.tsx:24: plain &lt;button&gt;, use the shadcn/ui component instead
 A blocking check failed. Fix the cause, do not turn the check off.</pre>
-        </div>
-      </section>
+    </section>
 
-      <section class="split">
-        <h2>Stricter as the risk goes up</h2>
-        <div>
-          <p class="lede muted">The profile decides which checks block and which only warn. This project uses <span id="profile-name"></span>.</p>
-          <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
-        </div>
-      </section>
+    <section class="section">
+      <div class="section-head"><h2>Stricter as the risk goes up</h2><p class="muted">The profile decides which checks block and which only warn. This project uses <span id="profile-name"></span>.</p></div>
+      <div class="card table-wrap"><table class="matrix" id="matrix"></table></div>
+    </section>
 
-      <section class="split" id="rules">
-        <h2>House rules</h2>
-        <div class="rules" id="rules-text"></div>
-      </section>
-    </div>
+    <section class="section" id="rules">
+      <div class="section-head"><h2>House rules</h2><p class="muted">The rules every agent reads, straight from the core.</p></div>
+      <div class="card rules" id="rules-text"></div>
+    </section>
   </main>
 
   <script src="kit.js"></script>

@@ -1,6 +1,6 @@
 # Reusable CI for the prototype profile. Projects call it from their own workflow:
 #   uses: hansalbertisaksson/test-core/.github/workflows/prototype.yml@main
-# It runs the checks, builds site/ with the shared design files and publishes to GitHub Pages.
+# It runs the checks, builds the app and the kit page, and publishes to GitHub Pages.
 name: Build Kit prototype
 
 on:
@@ -26,6 +26,13 @@ jobs:
             git clone --depth 1 https://github.com/hansalbertisaksson/test-core .core
           fi
           echo "Core at $(git -C .core rev-parse --short HEAD)"
+
+      - name: Set up Node
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
       - name: Run checks
         run: .core/hooks/checks/run.sh

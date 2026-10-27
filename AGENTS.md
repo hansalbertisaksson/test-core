@@ -5,9 +5,9 @@ These rules apply to every project built on this core. They are read by Claude, 
 ## How we build
 
 1. Start from the brief in `docs/brief.md`. If it says it is not filled in yet, run the `kickoff` skill first: ask its questions one at a time and write the answers there before building anything.
-2. Build from the design system. Use the CSS variables in `.core/design/tokens.css` for colour, type, spacing and radius. Never hard-code a colour or font. If a token is missing, say so and use the closest one.
-3. A prototype is a rough first draft for designers to take further. Keep it simple, readable and easy to change. Plain HTML, CSS and a little JavaScript are enough unless the brief says otherwise.
-4. Put everything that ships in `site/`. That folder is what gets published.
+2. Build every component with shadcn/ui. Use what is in `src/components/ui/`, add missing ones with `npx shadcn@latest add <name>`, and never hand-make a button, input, card or dialog. Style with Tailwind and the theme colours (`bg-primary`, `text-muted-foreground`), never hard-coded colours. Follow the `use-shadcn` skill.
+3. A prototype is a rough first draft for designers to take further. Keep it simple, readable and easy to change: React, Vite, Tailwind and shadcn/ui, nothing more unless the brief asks for it.
+4. The app lives in `src/`. The build publishes it, so whatever is in `src/` is what people see.
 5. Record any decision worth remembering in `docs/decisions.md`, with one line on why.
 
 ## What you never do
@@ -29,5 +29,5 @@ Skills live in `.core/skills/`. Use them when the task matches:
 - `start-prototype` for creating a brand new prototype, from nothing to a live link
 - `kickoff` for starting a new prototype and writing the brief
 - `build-prototype` for building or changing a page
-- `use-design-tokens` for anything visual
+- `use-shadcn` for any component, layout or styling
 - `ship-prototype` for publishing and sharing the live link

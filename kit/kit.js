@@ -61,7 +61,7 @@ fetch("kit.json")
 
     document.getElementById("checks-list").append(...kit.checks.map((check) =>
       el("div", { class: "row" },
-        el("div", { class: "row-head" }, el("h3", { class: "row-title" }, check.check.replace(/-/g, " ")), el("div", { class: "row-badges" }, modeBadge(check.mode), resultBadge(check.result))),
+        el("div", { class: "row-head" }, el("h3", { class: "row-title" }, check.check.replace(/-/g, " ").replace(/^ui /, "UI ")), el("div", { class: "row-badges" }, modeBadge(check.mode), resultBadge(check.result))),
         el("p", { class: "row-text" }, check.description),
         ...(check.message ? [el("p", { class: "row-message" }, check.message)] : [])
       )
@@ -73,7 +73,7 @@ fetch("kit.json")
     const matrix = document.getElementById("matrix");
     matrix.append(el("thead", {}, el("tr", {}, el("th", {}, "Check"), names.map((name) => el("th", { class: name === kit.profile ? "current" : "" }, name)))));
     matrix.append(el("tbody", {}, allChecks.map((check) =>
-      el("tr", {}, el("td", {}, check.replace(/-/g, " ")), names.map((name) => {
+      el("tr", {}, el("td", {}, check.replace(/-/g, " ").replace(/^ui /, "UI ")), names.map((name) => {
         const row = kit.profiles[name].find((r) => r.check === check);
         return el("td", {}, row ? modeBadge(row.mode) : "–");
       }))

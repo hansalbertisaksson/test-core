@@ -5,8 +5,8 @@ Three hooks, wired up in each project's `.claude/settings.json`:
 | Hook | Script | What it does |
 | --- | --- | --- |
 | `SessionStart` | project `scripts/session-start.sh`, then `session-start.sh` | Fetches the core, starts the preview at localhost:8000. New project: tells Claude to run the kickoff questions. Existing project: hands Claude the brief. |
-| `PreToolUse` on Write/Edit | `before-edit.sh` | Locks `site/` until the brief exists. Keeps `.core/` read-only. |
-| `PostToolUse` on Write/Edit | `after-edit.sh` | Rebuilds the preview and runs the checks after every edit. A blocking failure goes back to Claude to fix. |
+| `PreToolUse` on Write/Edit | `before-edit.sh` | Locks the pages (`src/`, `index.html`) until the brief exists. Keeps `.core/` read-only. |
+| `PostToolUse` on Write/Edit | `after-edit.sh` | Runs the checks after every edit (the Vite preview updates by itself). A blocking failure goes back to Claude to fix. |
 
 ```json
 {

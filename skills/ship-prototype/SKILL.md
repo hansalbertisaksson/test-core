@@ -7,7 +7,7 @@ description: Publish a Build Kit prototype and share its live link. Use when ask
 
 1. Run `.core/hooks/checks/run.sh`. Nothing may block.
 2. Commit with a short message that says what changed for the person looking at it.
-3. Push to `main`. CI runs the same checks, builds `site/` together with the shared design files and publishes it to GitHub Pages.
+3. Push to `main`. CI runs the same checks, builds the app and publishes it to GitHub Pages.
 4. The live link is `https://<owner>.github.io/<repo>/`. The repo README shows it too.
 5. Share the link together with one sentence on what to look at and what kind of feedback you want.
 

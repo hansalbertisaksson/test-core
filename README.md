@@ -1,6 +1,6 @@
 # test-core
 
-The shared core of the Build Kit. Every project mounts it read-only at `/.core` as a git submodule, so all projects build from the same house rules, design tokens, skills and checks.
+The shared core of the Build Kit. Every project mounts it read-only at `/.core` as a git submodule, so all projects build from the same house rules, skills and checks. Prototypes are React apps built with [shadcn/ui](https://ui.shadcn.com) components.
 
 ## Add it to Claude once
 
@@ -24,9 +24,8 @@ Start a new project from [template-prototype](https://github.com/hansalbertisaks
 | Folder | What it holds |
 | --- | --- |
 | `AGENTS.md` | House rules that Claude, GitHub Copilot and other agents read |
-| `design/` | Design tokens (`tokens.json`) exported to CSS variables (`tokens.css`) |
 | `skills/` | Step-by-step skills, one folder per skill with a `SKILL.md` |
-| `hooks/checks/` | Plain shell checks (secrets, personal data, file size, raw colours) |
+| `hooks/checks/` | Plain shell checks (secrets, personal data, file size, raw colours, shadcn components) |
 | `hooks/profiles/` | Which checks block and which only warn, per profile |
 | `hooks/adapters/` | Git pre-commit, plus Claude hooks for kickoff, locking and checks |
 | `.github/workflows/` | Reusable CI that runs the checks and deploys to GitHub Pages |
@@ -41,6 +40,6 @@ Only `prototype` is in use so far. `internal` and `client` are sketched in `hook
 
 Hard rules live in CI, because CI runs no matter which tool or person made the change. Local hooks are a convenience that catch problems earlier.
 
-## Changing tokens
+## The look
 
-Edit `design/tokens.json`, then run `node scripts/build-tokens.mjs` to regenerate `design/tokens.css`. Commit both.
+Prototypes use shadcn/ui's neutral theme, so they look like a draft and not like a finished brand. Each project changes its look in `src/index.css`. The `use-shadcn` skill holds the rules.

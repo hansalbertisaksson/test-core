@@ -26,6 +26,7 @@ It creates the repo from the template, copies it to `~/GitHub/<name>`, fetches t
 If it stops:
 
 - **GitHub CLI not installed:** ask the person if you may run `brew install gh`, then continue.
+- **Node.js not installed** (`npm: command not found`): ask the person if you may run `brew install node`, then continue.
 - **Not logged in:** ask the person to type `! gh auth login` here, choose GitHub.com, HTTPS and "Login with a web browser". It takes a minute and only happens once. Then run the script again.
 - **Name taken:** suggest another name.
 - Anything else: show the line that starts with `STOPPED` in plain words.
@@ -37,7 +38,7 @@ When the script prints `READY`:
 1. Run `CLAUDE_PROJECT_DIR=<folder> <folder>/scripts/session-start.sh`. It starts the preview at http://localhost:8000 and prints the next instruction.
 2. Tell the person, in two lines: the live link, and the preview link.
 3. From now on work inside `<folder>`. Read `<folder>/.core/AGENTS.md` and follow the `kickoff` skill: ask the questions one at a time and write `<folder>/docs/brief.md`.
-4. Then build with the `build-prototype` skill, and rebuild the preview after changes with `<folder>/.core/scripts/build-site.sh`.
+4. Then build with the `build-prototype` skill. The preview updates by itself as files change.
 5. When the person is happy, follow `ship-prototype`: commit and push from `<folder>`. It's live about a minute later.
 
 ## 4. Next time

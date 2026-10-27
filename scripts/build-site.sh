@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
-# Builds the publishable site: site/ plus the shared design files in core/ and the kit page in kit/.
-# Run from the project root. Output goes to _site/.
+# Builds the publishable site into _site/: the project's app plus the kit page in kit/.
+# A shadcn project (package.json) is built with Vite. An older static project copies site/.
+# Run from the project root.
 set -euo pipefail
-rm -rf _site
-mkdir -p _site
-cp -R site/. _site/
-rm -rf _site/core _site/kit
-mkdir -p _site/core _site/kit
-cp .core/design/tokens.css .core/design/base.css _site/core/
+if [ -f package.json ]; then
+  [ -d node_modules ] || npm ci --no-audit --no-fund --loglevel=error
+  npx --no-install vite build --outDir _site --emptyOutDir --logLevel warn
+else
+  rm -rf _site
+  mkdir -p _site
+  cp -R site/. _site/
+fi
 
 # The kit page shows how this prototype was built: house rules, skills and the latest check results.
+rm -rf _site/kit
+mkdir -p _site/kit
 report="$(mktemp)"
 BUILDKIT_REPORT="$report" .core/hooks/checks/run.sh >/dev/null 2>&1 || true
 cp .core/kit/index.html .core/kit/kit.css .core/kit/kit.js _site/kit/
