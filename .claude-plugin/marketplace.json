@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "buildkit",
-      "source": "./",
+      "source": "./plugins/buildkit",
       "description": "Start, build and ship prototypes from the shared core."
     }
   ],
