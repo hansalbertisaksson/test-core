@@ -9,7 +9,7 @@ A prototype without a brief tends to become a generic page. Before building anyt
 
 1. Say in one sentence that you'll ask a few quick questions first, so the first draft is about the right thing.
 2. Ask the questions below **one at a time**. Wait for each answer. Keep your own words short and friendly, and offer an example answer if the person seems unsure.
-3. If an answer is vague, ask one follow-up at most, then move on.
+3. If an answer is vague, ask one follow-up at most, then move on. If the person answers several questions at once, or pastes a whole brief, accept it and only ask about what's missing.
 4. When all questions are answered, write `docs/brief.md` with one short section per question, in the person's own words. Remove the line that says the brief is not filled in.
 5. Read the brief back as three bullet points and ask if it's right.
 6. Only then start building, using the `build-prototype` skill.
