@@ -1,5 +1,5 @@
 # Reusable CI for the prototype profile. Projects call it from their own workflow:
-#   uses: hansalbertisaksson/albert-core/.github/workflows/prototype.yml@main
+#   uses: hansalbertisaksson/test-core/.github/workflows/prototype.yml@main
 # It runs the checks, builds site/ with the shared design files and publishes to GitHub Pages.
 name: Build Kit prototype
 
@@ -23,7 +23,7 @@ jobs:
             git submodule update --init --remote .core
           else
             rm -rf .core
-            git clone --depth 1 https://github.com/hansalbertisaksson/albert-core .core
+            git clone --depth 1 https://github.com/hansalbertisaksson/test-core .core
           fi
           echo "Core at $(git -C .core rev-parse --short HEAD)"
 

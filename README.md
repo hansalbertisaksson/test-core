@@ -1,4 +1,4 @@
-# albert-core
+# test-core
 
 The shared core of the Build Kit. Every project mounts it read-only at `/.core` as a git submodule, so all projects build from the same house rules, design tokens, skills and checks.
 
