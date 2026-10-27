@@ -18,6 +18,15 @@ These rules apply to every project built on this core. They are read by Claude, 
 - Never add tracking, analytics or third-party scripts without it being written in the brief.
 - Never turn off or work around a check. If a check fails, fix the cause or explain why it is wrong.
 
+## Client projects
+
+When `.buildkit` says `profile=client`, these apply on top:
+
+- Every check blocks. Never move a project to a weaker profile.
+- Change `main` only through a pull request that a person reviews. Never merge or approve yourself.
+- The core version is pinned. Update it on purpose with `./scripts/update-core.sh`, in its own pull request.
+- Client data and credentials never go in the repo, not even as samples. Use fake data and the client's own secret store.
+
 ## Checks
 
 Run `.core/hooks/checks/run.sh` to check the project. The same checks run in git pre-commit, after Claude edits a file, and in CI. CI is the one that counts.
@@ -31,3 +40,5 @@ Skills live in `.core/skills/`. Use them when the task matches:
 - `build-prototype` for building or changing a page
 - `use-shadcn` for any component, layout or styling
 - `ship-prototype` for publishing and sharing the live link
+- `start-client` for setting up a new client project
+- `ship-client` for handing over a client change as a pull request

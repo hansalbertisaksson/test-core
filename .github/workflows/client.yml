@@ -1,0 +1,50 @@
+# Reusable CI for the client profile. Projects call it from their own workflow:
+#   uses: hansalbertisaksson/test-core/.github/workflows/client.yml@main
+# It runs every check against the core version the project has pinned, builds the site
+# and keeps it as a download. Nothing is published: hosting is agreed per client.
+name: Build Kit client
+
+on:
+  workflow_call:
+
+jobs:
+  check-and-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Client projects use the core version they pinned, never the latest.
+      - name: Check the pinned core
+        run: |
+          test -f .core/AGENTS.md || { echo "The core is missing. Run ./scripts/setup.sh and commit .core"; exit 1; }
+          echo "Core pinned at $(git -C .core rev-parse --short HEAD)"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci --no-audit --no-fund
+
+      - name: Run checks
+        run: .core/hooks/checks/run.sh
+
+      - name: Build site
+        run: .core/scripts/build-site.sh
+
+      - name: Keep the build
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _site
+          retention-days: 30
+
+      - name: Summary
+        run: |
+          echo "### Checks passed and the site is built" >> "$GITHUB_STEP_SUMMARY"
+          echo "Core $(git -C .core rev-parse --short HEAD). Download the build under Artifacts on this run." >> "$GITHUB_STEP_SUMMARY"

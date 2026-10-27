@@ -28,13 +28,13 @@ Start a new project from [template-prototype](https://github.com/hansalbertisaks
 | `hooks/checks/` | Plain shell checks (secrets, personal data, file size, raw colours, shadcn components) |
 | `hooks/profiles/` | Which checks block and which only warn, per profile |
 | `hooks/adapters/` | Git pre-commit, plus Claude hooks for kickoff, locking and checks |
-| `.github/workflows/` | Reusable CI that runs the checks and deploys to GitHub Pages |
+| `.github/workflows/` | Reusable CI: `prototype.yml` publishes to GitHub Pages, `client.yml` checks and builds pinned client projects |
 | `docs-template/` | The starting knowledge files for a new project |
 | `kit/` | The "How this prototype is built" page every project publishes at `/kit/` |
 
 ## Profiles
 
-Only `prototype` is in use so far. `internal` and `client` are sketched in `hooks/profiles/` and get stricter as the risk goes up.
+`prototype` is for quick drafts with a public live link, see [template-prototype](https://github.com/hansalbertisaksson/template-prototype). `client` is for real deliveries, see `template-client`: every check blocks (including type errors, vulnerable dependencies and licences), `main` changes only through reviewed pull requests, the core version is pinned, and CI keeps the build as a download instead of publishing it. `internal` is sketched in between.
 
 ## The rule of thumb
 

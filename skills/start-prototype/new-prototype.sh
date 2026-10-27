@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 # Creates a new prototype from the template, switches GitHub Pages on, clones it and sets it up.
-# Usage: new-prototype.sh <repo-name> [folder to clone into, default ~/GitHub]
+# Usage: new-prototype.sh [--client] <repo-name> [folder to clone into, default ~/GitHub]
+#   --client  a private client project from the client template, with no public link
 # Needs the GitHub CLI (gh), logged in once with: gh auth login
 set -uo pipefail
 
 TEMPLATE="hansalbertisaksson/template-prototype"
+visibility="--public"
+client=""
+if [ "${1:-}" = "--client" ]; then
+  TEMPLATE="hansalbertisaksson/template-client"
+  visibility="--private"
+  client=1
+  shift
+fi
 name="${1:-}"
 parent="${2:-$HOME/GitHub}"
 
@@ -23,7 +32,7 @@ folder="$parent/$name"
 gh repo view "$repo" >/dev/null 2>&1 && fail "$repo already exists on GitHub. Pick another name."
 
 say "1/4 Creating $repo from the template"
-gh repo create "$repo" --template "$TEMPLATE" --public --description "Prototype built with the Build Kit" >/dev/null || fail "could not create the repo"
+gh repo create "$repo" --template "$TEMPLATE" $visibility --description "Built with the Build Kit" >/dev/null || fail "could not create the repo"
 
 say "2/4 Copying it to $folder"
 mkdir -p "$parent"
@@ -33,6 +42,14 @@ for i in 1 2 3 4 5 6; do
 done
 [ -d "$folder/.git" ] || fail "could not clone $repo"
 (cd "$folder" && ./scripts/setup.sh) || fail "could not fetch the shared core"
+
+if [ -n "$client" ]; then
+  say ""
+  say "READY"
+  say "folder: $folder"
+  say "repo:   https://github.com/$repo (private, no public link)"
+  exit 0
+fi
 
 say "3/4 Waiting for the first build (about a minute)"
 for i in $(seq 1 60); do

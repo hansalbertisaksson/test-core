@@ -24,3 +24,15 @@ A prototype without a brief tends to become a generic page. Before building anyt
 6. **Out of scope.** What should it clearly not try to do yet?
 7. **Data.** Does it touch any real personal or client data? If yes, we use fake sample data and note it here.
 8. **Feedback.** Who gives feedback, and what kind of feedback do you want?
+
+## Client projects
+
+If `.buildkit` says `profile=client`, also ask these, one at a time, and add them to the brief:
+
+1. **Client and delivery.** Who is the client, and what exactly do we deliver?
+2. **Hosting.** Where will it run, and who deploys it?
+3. **Data.** Will it handle personal data? If yes, who is responsible for it, and is there a data processing agreement?
+4. **Accessibility.** Which level do we commit to, for example WCAG 2.2 AA?
+5. **Browsers and devices.** What must it support?
+6. **Approval.** Who reviews pull requests, and who signs off for the client?
+

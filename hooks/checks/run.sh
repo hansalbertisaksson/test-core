@@ -22,6 +22,7 @@ fi
 
 # The files to check, one per line. Never the shared core itself.
 if [ "${1:-}" = "--staged" ]; then
+  export BUILDKIT_STAGED=1
   FILES="$(git diff --cached --name-only --diff-filter=ACM)"
 else
   FILES="$(git ls-files --cached --others --exclude-standard 2>/dev/null || find . -type f -not -path './.git/*')"
