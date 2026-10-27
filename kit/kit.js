@@ -49,7 +49,6 @@ fetch("kit.json")
     const repoLink = kit.repository ? el("a", { href: `https://github.com/${kit.repository}` }, kit.repository) : "local build";
     [["Profile", kit.profile], ["Project", repoLink], ["Core", kit.core_version], ["Built", kit.built_at]]
       .forEach(([label, value]) => document.getElementById("meta").append(el("dt", {}, label), el("dd", {}, value)));
-    document.getElementById("corner-version").textContent = kit.core_version || "";
 
     document.getElementById("skills-list").append(...kit.skills.map((skill) =>
       el("div", { class: "row" },

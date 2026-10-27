@@ -1,6 +1,6 @@
-/* Base styles built on tokens.css, after doberman.co.
-   Type does the work: one grotesk, uppercase for navigation and labels, huge centred display lines,
-   large sentence-case body text, edge-to-edge image grids with hairline gutters, no boxes or shadows.
+/* Base styles built on tokens.css, in Doberman's design language (not a copy of doberman.co).
+   Type does the work: one grotesk, uppercase labels, big centred display lines,
+   large sentence-case body text, calm grids, no boxes or shadows.
    Dark by default. Add class="theme-light" to <body> for the white case-study look.
    Gerstner-Programm is licensed and not included. It is used where installed, otherwise Helvetica Neue. */
 *, *::before, *::after { box-sizing: border-box; }
@@ -32,37 +32,20 @@ a:hover, .is-current { font-style: italic; }
 ::selection { background: var(--color-ink); color: var(--color-paper); }
 img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
 
-/* Top navigation: items spread edge to edge, uppercase, with a grey second line under the first. */
+/* Top bar: project name on the left, a few links on the right. */
 .site-nav {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 10;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: baseline;
+  gap: var(--space-6);
   padding: var(--space-edge) var(--space-page);
   font-size: var(--size-md);
   line-height: var(--leading-tight);
   text-transform: uppercase;
-  mix-blend-mode: difference;
-  color: var(--color-white);
 }
-.site-nav small { display: block; font-size: inherit; color: var(--color-ink-soft); }
+.site-nav-links { display: flex; gap: var(--space-8); }
 
-/* Fixed corner text, bottom left. */
-.site-corner {
-  position: fixed;
-  left: var(--space-page);
-  bottom: var(--space-edge);
-  z-index: 10;
-  font-size: var(--size-md);
-  line-height: 1;
-  text-transform: uppercase;
-  mix-blend-mode: difference;
-  color: var(--color-white);
-}
-
-.page { padding: var(--space-40) var(--space-page) var(--space-24); }
+.page { padding: var(--space-12) var(--space-page) var(--space-24); }
 
 /* Huge centred line, the way case studies open. */
 .display {
@@ -97,7 +80,6 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
 .tile { display: grid; gap: var(--space-3); }
 .tile-media { aspect-ratio: 9 / 10; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-paper-raised); }
 .tile-caption { text-transform: uppercase; line-height: var(--leading-tight); }
-.tile-caption::after { content: " \2192"; }
 
 /* Outlined pill, used for tags and buttons. */
 .pill, .button {
@@ -119,10 +101,9 @@ img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm)
 .rule { border: 0; border-top: 1px solid var(--color-line); margin: 0; }
 
 @media (max-width: 48rem) {
-  .site-nav { flex-wrap: wrap; gap: var(--space-2) var(--space-4); font-size: var(--size-sm); }
-  .site-nav > :first-child { flex-basis: 100%; }
+  .site-nav { flex-wrap: wrap; gap: var(--space-2); font-size: var(--size-sm); }
+  .site-nav-links { gap: var(--space-4); }
   .page { padding-top: var(--space-24); }
   .split, .tiles, .tiles.four { grid-template-columns: 1fr; }
   .split { gap: var(--space-3); }
-  .site-corner { display: none; }
 }

@@ -7,16 +7,15 @@ description: Style anything visual with the shared design tokens. Use whenever w
 
 The design system lives in `.core/design/`. `tokens.css` holds the values as CSS variables, and `base.css` styles plain elements and the building blocks below.
 
-The look follows doberman.co. Type does the work: one grotesk, uppercase for navigation and labels, huge centred display lines, large sentence-case body text, image grids with hairline gutters. No boxes, shadows or filled buttons. Black by default; `class="theme-light"` on `<body>` gives the white case-study look. Yellow, violet and blush appear only as image or tile colour, never as UI chrome. Hover and the current page are shown in italics.
+The look is Doberman's design language, not a copy of doberman.co. Don't recreate the website's navigation, corner texts or case-study naming. Type does the work: one grotesk, uppercase for navigation and labels, huge centred display lines, large sentence-case body text, calm grids. No boxes, shadows or filled buttons. Black by default; `class="theme-light"` on `<body>` gives the white case-study look. Yellow, violet and blush appear only as image or tile colour, never as UI chrome. Hover and the current page are shown in italics.
 
 ## Building blocks in base.css
 
-- `.site-nav`: fixed top bar, items spread edge to edge, a `<small>` gives the grey second line under the first item. Mark the current page with `.is-current`.
-- `.site-corner`: fixed uppercase text, bottom left.
+- `.site-nav`: top bar with the project name on the left and a `.site-nav-links` group on the right. Mark the current page with `.is-current`.
 - `.display-section` with `.display`: a full-height section with one huge centred line, the way pages open.
 - `.page`: the content wrapper with the page margin.
 - `.split`: uppercase label on the left, large text from the middle.
-- `.tiles` (3 columns) or `.tiles.four`, each `.tile` with a `.tile-media` and an uppercase `.tile-caption` that gets an arrow.
+- `.tiles` (3 columns) or `.tiles.four`, each `.tile` with a `.tile-media` and an uppercase `.tile-caption`.
 - `.title`, `.lede`, `.label`, `.muted` for text, `.pill` for tags and buttons, `.arrow-link`, `.rule`.
 
 ## Rules
