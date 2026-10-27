@@ -15,34 +15,42 @@ The repo will be **public** so it can have a live link. If the client or the pro
 
 ## 2. Create it
 
-Run the latest version of the setup script straight from the core:
+Run these steps yourself, one command at a time, and tell the person it takes a minute or two. Use the name from step 1 as `<name>`. For a tool the agency will use itself (a dashboard, a planner, an internal helper), use the template `hansalbertisaksson/template-internal`; otherwise `hansalbertisaksson/template-prototype`.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/hansalbertisaksson/test-core/main/skills/start-prototype/new-prototype.sh | bash -s -- <name>
-```
+1. **Check the GitHub CLI.** `gh auth status`. If `gh` is missing, ask the person if you may run `brew install gh`. If they are not logged in, ask them to type `! gh auth login` here, choose GitHub.com, HTTPS and "Login with a web browser". It happens only once.
+2. **Check Node.** `npm --version`. If it is missing, ask if you may run `brew install node`.
+3. **Create the repo**, unless it already exists from an earlier try:
 
-For a tool the agency will use itself (a dashboard, a planner, an internal helper), add `--internal` before the name. It uses the internal template, where type errors and vulnerable dependencies block. Everything else is the same.
+   ```bash
+   owner="$(gh api user --jq .login)"
+   gh repo view "$owner/<name>" --json name >/dev/null 2>&1 \
+     || gh repo create "$owner/<name>" --template <template> --public --description "Built with the Build Kit"
+   ```
 
-It creates the repo from the template, copies it to `~/GitHub/<name>`, fetches the shared core, waits for the first build and switches the live link on. It takes one to two minutes. Tell the person it's working on it.
+   If the repo already exists, check it is the person's and came from the template (`gh api repos/$owner/<name> --jq .template_repository.full_name`). If yes, carry on, it is an earlier try. If not, the name is taken: suggest another.
+4. **Copy it to the Mac** over HTTPS with the GitHub CLI's login, so it works without SSH keys. Skip this if `~/GitHub/<name>/.git` already exists. GitHub needs a few seconds to fill a new repo, so try up to five times, a few seconds apart:
 
-If it stops:
+   ```bash
+   mkdir -p ~/GitHub
+   git -c credential.helper= -c credential.helper='!gh auth git-credential' clone -q "https://github.com/$owner/<name>.git" ~/GitHub/<name>
+   cd ~/GitHub/<name> && git config credential.helper '!gh auth git-credential'
+   ```
 
-- **GitHub CLI not installed:** ask the person if you may run `brew install gh`, then continue.
-- **Node.js not installed** (`npm: command not found`): ask the person if you may run `brew install node`, then continue.
-- **Not logged in:** ask the person to type `! gh auth login` here, choose GitHub.com, HTTPS and "Login with a web browser". It takes a minute and only happens once. Then run the script again.
-- **Name taken:** suggest another name.
-- Anything else: show the line that starts with `STOPPED` in plain words.
+5. **Set it up and switch on the live link:** `cd ~/GitHub/<name> && ./scripts/setup.sh && .core/scripts/go-live.sh`. It prints `READY` with the links, or a line starting with `STOPPED`.
+
+If a step fails, show the person the actual error in plain words, fix what you can, and run the remaining steps again. Every step is safe to repeat.
 
 ## 3. Kick off
 
-When the script prints `READY`:
+When `go-live.sh` prints `READY`:
 
-1. Run `CLAUDE_PROJECT_DIR=<folder> <folder>/scripts/session-start.sh`. It starts the preview at http://localhost:8000 and prints the next instruction.
+1. Run `CLAUDE_PROJECT_DIR=<folder> <folder>/scripts/session-start.sh`. It starts the preview, prints its link (usually http://localhost:8000) and the next instruction.
 2. Tell the person, in two lines: the live link, and the preview link.
-3. From now on work inside `<folder>`. Read `<folder>/.core/AGENTS.md` and follow the `kickoff` skill: ask the questions one at a time and write `<folder>/docs/brief.md`.
-4. Then build with the `build-prototype` skill. The preview updates by itself as files change.
-5. When the person is happy, follow `ship-prototype`: commit and push from `<folder>`. It's live about a minute later.
+3. Follow the `kickoff` skill in `<folder>/.core/skills/kickoff/SKILL.md`. You already know what it is and who it's for from step 1, so don't ask that again.
+4. This session was started outside the project, so the project's hooks are not running here. Do what they would do: don't touch `<folder>/src/` before the brief is written, never edit `<folder>/.core/`, and run `<folder>/.core/hooks/checks/run.sh` after every change and fix anything that blocks.
+5. Build with the `build-prototype` skill. The preview updates by itself as files change.
+6. When the person is happy, follow `ship-prototype`: commit and push from `<folder>`. It's live about a minute later.
 
 ## 4. Next time
 
-Tell the person once: to continue another day, open a new Claude Code session in `~/GitHub/<name>`. There the project's own hooks also run, so the checks happen after every edit.
+Tell the person once: to continue another day, open a new Claude Code session in the `~/GitHub/<name>` folder. There the project's own hooks run by themselves.

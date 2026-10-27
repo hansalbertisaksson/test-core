@@ -1,6 +1,6 @@
 # test-core
 
-The shared core of the Build Kit. Every project mounts it read-only at `/.core` as a git submodule, so all projects build from the same house rules, skills and checks. Prototypes are React apps built with [shadcn/ui](https://ui.shadcn.com) components.
+The shared core of the Build Kit. Every project fetches the latest copy into a read-only `.core/` folder (`scripts/setup.sh` does it on every session), so all projects build from the same house rules, skills and checks. Prototypes are React apps built with [shadcn/ui](https://ui.shadcn.com) components.
 
 ## Add it to Claude once
 

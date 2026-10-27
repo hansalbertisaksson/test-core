@@ -10,6 +10,6 @@ description: Build or change a page in a Build Kit prototype. Use when asked to 
 3. Build every component with shadcn/ui and style with the theme. Follow the `use-shadcn` skill.
 4. Keep it one simple draft: fake data in a `src/data.ts` file, no backend, no login that really works.
 5. Use fake sample content. No real names, emails or other personal data.
-6. Preview at http://localhost:8000. Opening the project in Claude Code starts it, or run `npm run dev`. It updates as you save.
+6. Preview at the localhost link the session start printed (usually http://localhost:8000). Opening the project in Claude Code starts it, or run `npm run dev`. It updates as you save.
 7. Run `npm run typecheck` and `.core/hooks/checks/run.sh`, and fix anything that blocks.
 8. Add a line to `docs/decisions.md` for any choice a designer would want to know about.
