@@ -1,33 +1,39 @@
-/* The kit page, in the same style as base.css. */
-.split > div > p.muted:first-child { font-size: var(--size-lg); margin-bottom: var(--space-8); }
+/* The kit page, built from the levels in base.css. Sentence case throughout;
+   caps only on .label (meta keys, row eyebrows, table heads). Spacing is in body lines (--space-*). */
 
-.meta { display: grid; grid-template-columns: auto 1fr; gap: var(--space-1) var(--space-6); margin: var(--space-8) 0 0; font-size: var(--size-md); text-transform: uppercase; }
-.meta dt { color: var(--color-ink-soft); }
+/* Meta list under the intro: caps keys, tabular values, on a shared baseline. */
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-xs) var(--space-md); align-items: baseline; font-variant-numeric: tabular-nums; }
+.meta dt { font-size: var(--size-sm); line-height: var(--leading-sm); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-ink-soft); }
 .meta dd { margin: 0; }
+.meta dd::first-letter { text-transform: uppercase; }
 
-.flow { padding-block: var(--space-12); }
-.flow-step { display: grid; place-items: center; font-size: var(--size-2xl); letter-spacing: var(--tracking-display); }
+.flow-step { display: grid; place-items: center; font-size: var(--size-4xl); line-height: 1; letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
 .flow-1 { background: var(--color-yellow); color: var(--color-black); }
 .flow-2 { background: var(--color-violet); color: var(--color-white); }
 .flow-3 { background: var(--color-blush); color: var(--color-black); }
 .flow-4 { background: var(--color-white); color: var(--color-black); }
 
+/* Rows: an optional label, a sub-heading, then body text. Hairlines between. */
 .rows { border-top: 1px solid var(--color-line); }
-.row { padding-block: var(--space-6); border-bottom: 1px solid var(--color-line); display: grid; gap: var(--space-2); }
-.row-title { font-size: var(--size-lg); line-height: var(--leading-tight); text-transform: uppercase; }
-.row-text { font-size: var(--size-md); line-height: var(--leading-body); color: var(--color-ink-soft); max-width: 52ch; }
-.row-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); flex-wrap: wrap; }
-.row-badges { display: flex; gap: var(--space-2); }
-.row details { margin-top: var(--space-2); }
-.row summary { cursor: pointer; text-transform: uppercase; list-style: none; }
+.row { padding-block: var(--space-md); border-bottom: 1px solid var(--color-line); display: grid; gap: var(--space-xs); }
+.row > * + * { margin-top: 0; }
+.row-title { font-size: var(--size-lg); line-height: var(--leading-lg); }
+.row-title::first-letter { text-transform: uppercase; }
+.row-text { color: var(--color-ink-soft); max-width: var(--measure-body); }
+.row-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-xs) var(--space-md); flex-wrap: wrap; }
+.row-badges { display: flex; gap: var(--space-xs); }
+.row details { margin-top: var(--space-xs); }
+.row summary { cursor: pointer; list-style: none; font-variant-numeric: tabular-nums; }
+.row summary:hover { font-style: italic; }
 .row summary::-webkit-details-marker { display: none; }
 .row summary::after { content: " \2192"; }
 .row details[open] summary::after { content: " \2193"; }
-.row ol { margin: var(--space-3) 0 0; padding-left: var(--space-6); max-width: 52ch; color: var(--color-ink-soft); }
-.row li { margin-bottom: var(--space-2); }
-.row-message { font-family: var(--font-mono); font-size: var(--size-xs); color: var(--color-ink-soft); }
+.row ol { margin: var(--space-sm) 0 0; padding-left: 1.5em; max-width: var(--measure-body); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
+.row li + li { margin-top: var(--space-xs); }
+.row-message { font-family: var(--font-mono); font-size: var(--size-sm); line-height: var(--leading-sm); color: var(--color-ink-soft); }
 
-.badge { display: inline-block; padding: 0.1em 0.7em; border: 1px solid currentColor; border-radius: var(--radius-pill); font-size: var(--size-sm); text-transform: uppercase; white-space: nowrap; }
+/* Status marks. Lower case words, small, outlined. */
+.badge { display: inline-block; padding: 0.15em 0.7em; border: 1px solid currentColor; border-radius: var(--radius-pill); font-size: var(--size-sm); line-height: var(--leading-sm); white-space: nowrap; }
 .badge-block { color: var(--color-block); }
 .badge-warn { color: var(--color-warn); }
 .badge-ok { color: var(--color-ok); }
@@ -38,24 +44,34 @@
 
 code { font-family: var(--font-mono); font-size: 0.85em; }
 
-.terminal { margin: 0; padding: var(--space-6); background: var(--color-terminal); color: var(--color-terminal-ink); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--size-sm); line-height: 1.6; overflow-x: auto; }
+.terminal { margin: 0; padding: var(--space-md); background: var(--color-terminal); color: var(--color-terminal-ink); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: var(--size-sm); line-height: var(--leading-md); overflow-x: auto; }
 .t-dim { color: var(--color-ink-soft); }
 .t-block { color: var(--color-block); }
 .t-warn { color: var(--color-warn); }
 .t-ok { color: var(--color-ok); }
 
+/* Profile matrix: caps label heads, sentence-case rows, tabular figures. */
 .matrix-wrap { overflow-x: auto; }
-.matrix { border-collapse: collapse; width: 100%; min-width: 28rem; }
-.matrix th, .matrix td { padding: var(--space-3) var(--space-2); border-bottom: 1px solid var(--color-line); text-align: left; font-weight: 400; }
-.matrix th { text-transform: uppercase; color: var(--color-ink-soft); }
-.matrix th.current { color: var(--color-ink); font-style: italic; }
+.matrix { border-collapse: collapse; width: 100%; min-width: 20rem; font-variant-numeric: tabular-nums; }
+.matrix th, .matrix td { padding: var(--space-sm) var(--space-sm) var(--space-sm) 0; border-bottom: 1px solid var(--color-line); text-align: left; font-weight: 400; vertical-align: baseline; }
+.matrix th { font-size: var(--size-sm); line-height: var(--leading-sm); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-ink-soft); }
+.matrix th.current { color: var(--color-ink); }
+.matrix td:first-child::first-letter { text-transform: uppercase; }
 
-.rules h3 { font-size: var(--size-lg); text-transform: uppercase; margin: var(--space-12) 0 var(--space-4); }
-.rules h3:first-child { margin-top: 0; }
-.rules p { font-size: var(--size-lg); line-height: var(--leading-tight); max-width: 40ch; }
-.rules ol, .rules ul { margin: 0; padding-left: 1.2em; font-size: var(--size-md); max-width: 52ch; }
-.rules li { padding-block: var(--space-2); border-bottom: 1px solid var(--color-line); }
+/* House rules, rendered from AGENTS.md: a lead paragraph, sub-headings, body text and hairline lists. */
+.rules > p:first-child { font-size: var(--size-xl); line-height: var(--leading-xl); letter-spacing: var(--tracking-tight); max-width: var(--measure-lead); }
+.rules h3 { font-size: var(--size-lg); line-height: var(--leading-lg); margin: var(--space-lg) 0 var(--space-sm); }
+.rules p { max-width: var(--measure-body); }
+.rules ol, .rules ul { margin: 0; padding-left: 0; max-width: var(--measure-body); }
+/* Hanging markers: the text keeps the column's left edge, numbers and dashes hang into the gutter. */
+.rules li { list-style-position: outside; }
+.rules ul { list-style-type: "\2013\2002"; }
+.rules ol { font-variant-numeric: tabular-nums; }
+.rules li { padding-block: var(--space-sm); border-bottom: 1px solid var(--color-line); }
+.rules li:first-child { border-top: 1px solid var(--color-line); }
+.rules p + ol, .rules p + ul { margin-top: var(--space-md); }
 
-.row summary, .matrix, .meta, .terminal { font-size: var(--size-md); }
-.terminal { font-size: var(--size-sm); }
-.matrix td:first-child { text-transform: uppercase; }
+/* On a phone the gutter is the page margin, too narrow to hang into. */
+@media (max-width: 48rem) {
+  .rules ol, .rules ul { padding-left: 1.5em; }
+}

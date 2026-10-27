@@ -23,7 +23,7 @@
       <section class="split">
         <h2>How it's built</h2>
         <div>
-          <p>Every prototype starts from the same shared core. Skills tell the AI how we build. Hooks steer it while it works. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
+          <p class="lede">Every prototype starts from the same shared core. Skills tell the AI how we build. Hooks steer it while it works. Checks catch what must never ship. This page is generated on every deploy, so it shows what actually ran.</p>
           <dl class="meta" id="meta"></dl>
         </div>
       </section>
@@ -38,7 +38,7 @@
       <section class="split" id="skills">
         <h2>Skills</h2>
         <div>
-          <p class="muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
+          <p class="lede muted">Step-by-step know-how the AI picks up when the task matches. Written once in the core, used in every project.</p>
           <div class="rows" id="skills-list"></div>
         </div>
       </section>
@@ -46,7 +46,7 @@
       <section class="split" id="hooks">
         <h2>Hooks</h2>
         <div>
-          <p class="muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
+          <p class="lede muted">Small scripts that run at fixed moments while the AI works. They steer it without anyone having to remember.</p>
           <div class="rows">
             <div class="row"><p class="label muted">When a session starts</p><h3 class="row-title">Set up, then kickoff</h3><p class="row-text">Fetches the shared core and starts a local preview. In a new project the AI asks the kickoff questions before anything else. Otherwise it gets the brief, so nobody explains it again.</p></div>
             <div class="row"><p class="label muted">Before the AI edits a file</p><h3 class="row-title">Brief first</h3><p class="row-text">The pages stay locked until the brief is written. The shared core can never be edited from a project.</p></div>
@@ -58,7 +58,7 @@
       <section class="split" id="checks">
         <h2>Checks</h2>
         <div>
-          <p class="muted">The same plain scripts run on commit, after the AI edits, and in CI on every push. Only CI is required. Nothing goes live without it.</p>
+          <p class="lede muted">The same plain scripts run on commit, after the AI edits, and in CI on every push. Only CI is required. Nothing goes live without it.</p>
           <div class="rows" id="checks-list"></div>
         </div>
       </section>
@@ -66,7 +66,7 @@
       <section class="split">
         <h2>See it catch something</h2>
         <div>
-          <p class="muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
+          <p class="lede muted">What happens if someone, or the AI, tries to commit an API key and a real personal identity number.</p>
           <pre class="terminal"><span class="t-dim">$</span> git commit -m "Add sign-up form"
 Build Kit checks, profile: prototype
   <span class="t-block">FAIL</span>  secrets
@@ -83,7 +83,7 @@ A blocking check failed. Fix the cause, do not turn the check off.</pre>
       <section class="split">
         <h2>Stricter as the risk goes up</h2>
         <div>
-          <p class="muted">The profile decides which checks block and which only warn. This project uses <span id="profile-name"></span>.</p>
+          <p class="lede muted">The profile decides which checks block and which only warn. This project uses <span id="profile-name"></span>.</p>
           <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
         </div>
       </section>
