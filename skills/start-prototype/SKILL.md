@@ -9,7 +9,7 @@ The person should never have to touch GitHub, a terminal or a settings page. You
 
 ## 1. Agree on a name
 
-Ask one question: what is it, and for whom? Then suggest a short repo name in lowercase with dashes, like `coffee-club-prototype`, and ask if it's fine.
+Ask one question: what is it, and for whom? Then suggest a short repo name in lowercase with dashes, like `coffee-club-prototype`, and ask for a go-ahead in one message, for example: "I'll create `coffee-club-prototype` as a public repo on your GitHub, with a public live page. OK?" Their yes is the approval for step 2, so don't ask again.
 
 The repo will be **public** so it can have a live link. If the client or the project is confidential, suggest a code name instead of the client's name, and say why in one sentence.
 
