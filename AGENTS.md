@@ -26,6 +26,7 @@ Run `.core/hooks/checks/run.sh` to check the project. The same checks run in git
 
 Skills live in `.core/skills/`. Use them when the task matches:
 
+- `start-prototype` for creating a brand new prototype, from nothing to a live link
 - `kickoff` for starting a new prototype and writing the brief
 - `build-prototype` for building or changing a page
 - `use-design-tokens` for anything visual

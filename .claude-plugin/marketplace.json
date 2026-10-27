@@ -1,0 +1,14 @@
+{
+  "name": "buildkit",
+  "owner": {
+    "name": "Build Kit"
+  },
+  "plugins": [
+    {
+      "name": "buildkit",
+      "source": "./",
+      "description": "Start, build and ship prototypes from the shared core."
+    }
+  ],
+  "description": "Build Kit: start, build and ship AI-assisted prototypes"
+}
