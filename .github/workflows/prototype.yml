@@ -1,0 +1,52 @@
+# Reusable CI for the prototype profile. Projects call it from their own workflow:
+#   uses: hansalbertisaksson/albert-core/.github/workflows/prototype.yml@main
+# It runs the checks, builds site/ with the shared design files and publishes to GitHub Pages.
+name: Build Kit prototype
+
+on:
+  workflow_call:
+
+jobs:
+  check-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Prototypes always build from the latest core.
+      - name: Get the latest core
+        run: |
+          if [ -f .core/AGENTS.md ]; then
+            git submodule update --init --remote .core
+          else
+            rm -rf .core
+            git clone --depth 1 https://github.com/hansalbertisaksson/albert-core .core
+          fi
+          echo "Core at $(git -C .core rev-parse --short HEAD)"
+
+      - name: Run checks
+        run: .core/hooks/checks/run.sh
+
+      - name: Build site
+        run: .core/scripts/build-site.sh
+
+      - name: Publish to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd _site
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Publish ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          owner="${GITHUB_REPOSITORY%%/*}"
+          repo="${GITHUB_REPOSITORY#*/}"
+          url="https://${owner,,}.github.io/${repo}/"
+          echo "Live at $url"
+          echo "### Live at $url" >> "$GITHUB_STEP_SUMMARY"

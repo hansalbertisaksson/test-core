@@ -1,0 +1,44 @@
+/* Base styles built on tokens.css. Projects load this after tokens.css. */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--size-md);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.1; margin: 0 0 var(--space-4); }
+h1 { font-size: clamp(var(--size-2xl), 6vw, var(--size-3xl)); }
+h2 { font-size: var(--size-xl); }
+h3 { font-size: var(--size-lg); }
+p { margin: 0 0 var(--space-4); max-width: 62ch; }
+a { color: inherit; text-decoration-color: var(--color-accent); text-underline-offset: 0.2em; }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+.container { width: min(100% - 2 * var(--space-4), 72rem); margin-inline: auto; }
+
+.button {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card {
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.muted { color: var(--color-ink-soft); }

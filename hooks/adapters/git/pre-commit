@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Git pre-commit adapter. Installed by scripts/start.sh via: git config core.hooksPath .core/hooks/adapters/git
+exec "$(git rev-parse --show-toplevel)/.core/hooks/checks/run.sh" --staged
