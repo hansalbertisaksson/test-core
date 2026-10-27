@@ -6,10 +6,10 @@ description: Set up a new client project from the client template. Use when some
 # Start a client project
 
 1. Ask one question: which client and what is the delivery? Suggest a repo name in lowercase with dashes, like `acme-booking`, and ask for a go-ahead in one message: "I'll create `acme-booking` as a private repo on your GitHub. OK?" Their yes is the approval for step 2.
-2. Run the script next to the prototype skill with the client flag:
+2. Run the latest setup script from the core with the client flag:
 
    ```bash
-   bash "<the start-prototype skill's folder>/new-prototype.sh" --client <name>
+   curl -fsSL https://raw.githubusercontent.com/hansalbertisaksson/test-core/main/skills/start-prototype/new-prototype.sh | bash -s -- --client <name>
    ```
 
    It creates a private repo from the client template, copies it to `~/GitHub/<name>`, and fetches the pinned core. There is no public live link.

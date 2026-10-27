@@ -11,7 +11,7 @@ In Claude Code (the Code tab in the desktop app, or `claude` in a terminal):
 /plugin install buildkit@buildkit
 ```
 
-To get updates, turn on auto-update once: `/plugin`, Marketplaces, buildkit, Enable auto-update.
+The plugin is only the way in. It fetches the latest steps from this repo every time, and each project's `.core/` updates itself, so nobody needs to update anything.
 
 Then just say "I need a prototype for …". Claude creates the project, switches the live link on and asks a few kickoff questions. The first time it may ask you to log in to GitHub once.
 

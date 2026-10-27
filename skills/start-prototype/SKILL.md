@@ -15,10 +15,10 @@ The repo will be **public** so it can have a live link. If the client or the pro
 
 ## 2. Create it
 
-Run the script that sits next to this file:
+Run the latest version of the setup script straight from the core:
 
 ```bash
-bash "<this skill's folder>/new-prototype.sh" <name>
+curl -fsSL https://raw.githubusercontent.com/hansalbertisaksson/test-core/main/skills/start-prototype/new-prototype.sh | bash -s -- <name>
 ```
 
 For a tool the agency will use itself (a dashboard, a planner, an internal helper), add `--internal` before the name. It uses the internal template, where type errors and vulnerable dependencies block. Everything else is the same.

@@ -7,7 +7,7 @@
     {
       "name": "buildkit",
       "source": "./plugins/buildkit",
-      "description": "Start, build and ship prototypes from the shared core."
+      "description": "The way in to the Build Kit: start a prototype or internal tool from one sentence."
     }
   ],
   "description": "Build Kit: start, build and ship AI-assisted prototypes"

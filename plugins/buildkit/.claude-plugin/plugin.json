@@ -1,6 +1,6 @@
 {
   "name": "buildkit",
-  "description": "Start, build and ship prototypes and internal tools with shadcn/ui: house rules, kickoff questions and checks.",
+  "description": "The way in to the Build Kit. Say you need a prototype or internal tool, and it fetches the latest steps from the shared core, so the plugin never needs updating.",
   "author": {
     "name": "Build Kit"
   },
