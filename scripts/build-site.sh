@@ -18,6 +18,9 @@ mkdir -p _site/kit
 report="$(mktemp)"
 BUILDKIT_REPORT="$report" .core/hooks/checks/run.sh >/dev/null 2>&1 || true
 cp .core/kit/index.html .core/kit/kit.css .core/kit/kit.js _site/kit/
+# Version the kit files so browsers never mix a new page with an old cached stylesheet.
+v="$(git -C .core rev-parse --short HEAD 2>/dev/null || date +%s)"
+sed -i.bak "s|kit\.css\"|kit.css?v=$v\"|; s|kit\.js\"|kit.js?v=$v\"|" _site/kit/index.html && rm -f _site/kit/index.html.bak
 python3 .core/scripts/kit-data.py .core "$report" _site/kit/kit.json
 rm -f "$report"
 
