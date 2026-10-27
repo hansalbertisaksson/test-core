@@ -18,6 +18,10 @@ These rules apply to every project built on this core. They are read by Claude, 
 - Never add tracking, analytics or third-party scripts without it being written in the brief.
 - Never turn off or work around a check. If a check fails, fix the cause or explain why it is wrong.
 
+## Internal tools
+
+When `.buildkit` says `profile=internal`, the tool is for the agency itself. Type errors, vulnerable dependencies and design drift block. Its live link is public, so it uses fake data until it has private hosting.
+
 ## Client projects
 
 When `.buildkit` says `profile=client`, these apply on top:

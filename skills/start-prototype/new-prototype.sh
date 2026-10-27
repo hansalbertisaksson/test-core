@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Creates a new prototype from the template, switches GitHub Pages on, clones it and sets it up.
-# Usage: new-prototype.sh [--client] <repo-name> [folder to clone into, default ~/GitHub]
+# Usage: new-prototype.sh [--internal|--client] <repo-name> [folder to clone into, default ~/GitHub]
+#   --internal  a tool for the agency itself, from the internal template, with a live link
 #   --client  a private client project from the client template, with no public link
 # Needs the GitHub CLI (gh), logged in once with: gh auth login
 set -uo pipefail
@@ -8,7 +9,10 @@ set -uo pipefail
 TEMPLATE="hansalbertisaksson/template-prototype"
 visibility="--public"
 client=""
-if [ "${1:-}" = "--client" ]; then
+if [ "${1:-}" = "--internal" ]; then
+  TEMPLATE="hansalbertisaksson/template-internal"
+  shift
+elif [ "${1:-}" = "--client" ]; then
   TEMPLATE="hansalbertisaksson/template-client"
   visibility="--private"
   client=1

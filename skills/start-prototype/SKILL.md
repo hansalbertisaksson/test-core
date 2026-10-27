@@ -21,6 +21,8 @@ Run the script that sits next to this file:
 bash "<this skill's folder>/new-prototype.sh" <name>
 ```
 
+For a tool the agency will use itself (a dashboard, a planner, an internal helper), add `--internal` before the name. It uses the internal template, where type errors and vulnerable dependencies block. Everything else is the same.
+
 It creates the repo from the template, copies it to `~/GitHub/<name>`, fetches the shared core, waits for the first build and switches the live link on. It takes one to two minutes. Tell the person it's working on it.
 
 If it stops:

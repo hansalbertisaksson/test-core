@@ -25,6 +25,16 @@ A prototype without a brief tends to become a generic page. Before building anyt
 7. **Data.** Does it touch any real personal or client data? If yes, we use fake sample data and note it here.
 8. **Feedback.** Who gives feedback, and what kind of feedback do you want?
 
+## Internal tools
+
+If `.buildkit` says `profile=internal`, also ask these, one at a time, and add them to the brief:
+
+1. **Who uses it.** Which people or teams in the agency, and how often?
+2. **What it replaces.** What do they do today instead?
+3. **Owner.** Who looks after it once it works?
+
+The live link is public, so an internal tool still uses fake data. If it needs real agency data, say so in the brief: it then needs private hosting first.
+
 ## Client projects
 
 If `.buildkit` says `profile=client`, also ask these, one at a time, and add them to the brief:

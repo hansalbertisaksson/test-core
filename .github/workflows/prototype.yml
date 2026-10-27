@@ -1,4 +1,4 @@
-# Reusable CI for the prototype profile. Projects call it from their own workflow:
+# Reusable CI for the prototype and internal profiles. Projects call it from their own workflow:
 #   uses: hansalbertisaksson/test-core/.github/workflows/prototype.yml@main
 # It runs the checks, builds the app and the kit page, and publishes to GitHub Pages.
 name: Build Kit prototype
@@ -33,6 +33,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
+
+      - name: Install
+        if: hashFiles('package.json') != ''
+        run: npm ci --no-audit --no-fund
 
       - name: Run checks
         run: .core/hooks/checks/run.sh

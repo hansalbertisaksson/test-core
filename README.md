@@ -34,7 +34,7 @@ Start a new project from [template-prototype](https://github.com/hansalbertisaks
 
 ## Profiles
 
-`prototype` is for quick drafts with a public live link, see [template-prototype](https://github.com/hansalbertisaksson/template-prototype). `client` is for real deliveries, see `template-client`: every check blocks (including type errors, vulnerable dependencies and licences), `main` changes only through reviewed pull requests, the core version is pinned, and CI keeps the build as a download instead of publishing it. `internal` is sketched in between.
+`prototype` is for quick drafts with a public live link, see [template-prototype](https://github.com/hansalbertisaksson/template-prototype). `client` is for real deliveries, see `template-client`: every check blocks (including type errors, vulnerable dependencies and licences), `main` changes only through reviewed pull requests, the core version is pinned, and CI keeps the build as a download instead of publishing it. `internal` is for tools the agency uses itself, see `template-internal`: the same flow as a prototype, with a live link and the latest core, but type errors, vulnerable dependencies and design system drift block.
 
 ## The rule of thumb
 
