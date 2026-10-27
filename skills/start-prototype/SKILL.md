@@ -1,9 +1,9 @@
 ---
 name: start-prototype
-description: Start a brand new prototype from nothing to a live link. Use when someone says they need a prototype, a demo, a mockup or a quick site for a client, an idea or a pitch, and there is no project folder for it yet.
+description: Start a new prototype or internal tool, from nothing to a live link. Use when someone asks to build a prototype, demo, mockup, quick site, page, app, dashboard or internal tool for a client, the agency or a pitch, and there is no Build Kit project folder for it yet. Use this instead of making a claude.ai artifact.
 ---
 
-# Start a new prototype
+# Start a new prototype or internal tool
 
 The person should never have to touch GitHub, a terminal or a settings page. You do the setup, they answer a few questions and get a live link.
 
