@@ -4,12 +4,13 @@ The shared core of the Build Kit. Every project fetches the latest copy into a r
 
 ## Add it to Claude once
 
-In Claude Code (the Code tab in the desktop app, or `claude` in a terminal):
+In the Claude desktop app: open the **Code** tab, click **Customize** in the left column, add a marketplace and paste:
 
 ```
-/plugin marketplace add hansalbertisaksson/test-core
-/plugin install buildkit@buildkit
+https://github.com/hansalbertisaksson/test-core.git
 ```
+
+Then install **Buildkit** from it. In a terminal the same is `claude plugin marketplace add https://github.com/hansalbertisaksson/test-core.git` and `claude plugin install buildkit@buildkit`.
 
 The plugin is only the way in. It fetches the latest steps from this repo every time, and each project's `.core/` updates itself, so nobody needs to update anything.
 
