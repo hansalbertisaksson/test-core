@@ -7,19 +7,21 @@ description: Start a new prototype, page or internal tool, from nothing to a liv
 
 The person should never have to touch GitHub, a terminal or a settings page. You do the setup, they answer a few questions and get a live link.
 
+**Talk like a colleague, not a developer.** The person is often a designer. Write in their language and keep everything technical out of sight: no commands, no `!`, no file paths, and no words like repo, template, CLI, auth, branch, commit, push or auto mode. Say "the project", "your page", "publish" and "the link" instead. When something fails, say what it means for them in one plain sentence and what you are doing about it. Show a command only if there is truly no other way, as a single line to paste, never as a choice of options.
+
 ## 1. Agree on a name
 
 Ask what it is, and who it is for: "Is this just for you, a tool for the agency, or for a client?" Ask this even when the request seems obvious or tiny, like a hello world page. Never guess it from the wording. Pick the profile and template from the table under Choosing the profile in the core's `AGENTS.md` (fetch it from https://raw.githubusercontent.com/hansalbertisaksson/test-core/main/AGENTS.md). If it is real client delivery, say that isn't ready yet and offer a prototype instead.
 
-Then suggest a short repo name in lowercase with dashes, like `coffee-club-prototype`, and ask for a go-ahead in one message, for example: "I'll create `coffee-club-prototype` as a public repo on your GitHub, with a public live page. OK?" Their yes is the approval for step 2, so don't ask again.
+Then suggest a short name in lowercase with dashes, like `coffee-club-prototype`, and check that `gh repo view <owner>/<name>` finds nothing, so you never suggest a name that is taken. Ask for a go-ahead in one plain message, for example: "I'll set up coffee-club-prototype and publish it on an open link that anyone with the link can see. OK?" Their yes is the approval for step 2, so don't ask again.
 
-The repo will be **public** so it can have a live link. If the client or the project is confidential, suggest a code name instead of the client's name, and say why in one sentence.
+The project will be **public** so it can have a live link. If the client or the project is confidential, suggest a code name instead of the client's name, and say why in one sentence.
 
 ## 2. Create it
 
-Run these steps yourself, one command at a time, and tell the person it takes a minute or two. Use the name from step 1 as `<name>`. Use the template that goes with the profile from step 1: `hansalbertisaksson/template-internal` for `internal`, `hansalbertisaksson/template-prototype` for `prototype`.
+Run these steps yourself, one command at a time, and tell the person only that it takes a minute or two. Don't narrate the steps. Use the name from step 1 as `<name>`. Use the template that goes with the profile from step 1: `hansalbertisaksson/template-internal` for `internal`, `hansalbertisaksson/template-prototype` for `prototype`.
 
-1. **Check the GitHub CLI.** `gh auth status`. If `gh` is missing, ask the person if you may run `brew install gh`. If they are not logged in, ask them to type `! gh auth login` here, choose GitHub.com, HTTPS and "Login with a web browser". It happens only once.
+1. **Check the GitHub CLI.** `gh auth status`. If `gh` is missing, ask the person if you may run `brew install gh`. If they are not logged in, tell them they need to log in to GitHub once, and give the single line `! gh auth login` to paste, then guide them: pick GitHub.com, HTTPS and "Login with a web browser".
 2. **Check Node.** `npm --version`. If it is missing, ask if you may run `brew install node`.
 3. **Create the repo**, unless it already exists from an earlier try:
 
@@ -28,6 +30,8 @@ Run these steps yourself, one command at a time, and tell the person it takes a 
    gh repo view "$owner/<name>" --json name >/dev/null 2>&1 \
      || gh repo create "$owner/<name>" --template <template> --public --description "Built with the Build Kit"
    ```
+
+   If creating it is blocked because the app wants a person's own yes before something is published, don't retry and don't show the command. Say in one sentence: "Before anything goes public, the app wants your own yes. Just answer: yes, publish <name>." When they answer, try once more. Only if it is still blocked, give them the single line to paste, prefixed with `!`, and say "paste this and press Enter, then tell me when it's done".
 
    If the repo already exists, check it is the person's and came from the template (`gh api repos/$owner/<name> --jq .template_repository.full_name`). If yes, carry on, it is an earlier try. If not, the name is taken: suggest another.
 4. **Copy it to the Mac** over HTTPS with the GitHub CLI's login, so it works without SSH keys. Skip this if `~/GitHub/<name>/.git` already exists. GitHub needs a few seconds to fill a new repo, so try up to five times, a few seconds apart:
