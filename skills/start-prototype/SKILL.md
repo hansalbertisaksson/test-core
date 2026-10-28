@@ -1,6 +1,6 @@
 ---
 name: start-prototype
-description: Start a new prototype or internal tool, from nothing to a live link. Use when someone asks to build a prototype, demo, mockup, quick site, page, app, dashboard or internal tool for a client, the agency or a pitch, and there is no Build Kit project folder for it yet. Use this instead of making a claude.ai artifact.
+description: Start a new prototype, page or internal tool, from nothing to a live link. Use whenever someone asks to make anything shown in a browser (a page, HTML page, site, app, prototype, demo, mockup, dashboard or tool), in any language, e.g. "sida", "prototyp", "verktyg", and there is no Build Kit project folder yet. Use this instead of a claude.ai artifact or a loose HTML file, unless they ask for an artifact.
 ---
 
 # Start a new prototype or internal tool
