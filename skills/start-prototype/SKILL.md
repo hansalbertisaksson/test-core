@@ -53,7 +53,7 @@ When `go-live.sh` prints `READY`:
 
 1. Run `CLAUDE_PROJECT_DIR=<folder> <folder>/scripts/session-start.sh`. It starts the preview, prints its link (usually http://localhost:8000) and the next instruction.
 2. Tell the person, in two lines: the live link, and the preview link.
-3. Follow the `kickoff` skill in `<folder>/.core/skills/kickoff/SKILL.md`. You already know what it is and who it's for from step 1, so don't ask that again.
+3. Follow the `kickoff` skill in `<folder>/.core/skills/kickoff/SKILL.md`. You already know what it is and who it's for from step 1, so don't ask that again. For a small ask, that means no more questions at all.
 4. This session was started outside the project, so the project's hooks are not running here. Do what they would do: don't touch `<folder>/src/` before the brief is written, never edit `<folder>/.core/`, and run `<folder>/.core/hooks/checks/run.sh` after every change and fix anything that blocks.
 5. Build with the `build-prototype` skill. The preview updates by itself as files change.
 6. When the person is happy, follow `ship-prototype`: commit and push from `<folder>`. It's live about a minute later.

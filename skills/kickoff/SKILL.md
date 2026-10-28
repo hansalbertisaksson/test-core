@@ -8,12 +8,12 @@ description: Start a new prototype by asking the kickoff questions and writing t
 A prototype without a brief tends to become a generic page. Before building anything, have a short conversation and write down the answers.
 
 1. If `.buildkit` says `profile=unset`, first ask: "Is this just for you, a tool for the agency, or for a client?" Set the profile as described under Choosing the profile in `.core/AGENTS.md`. Never guess it from the request.
-2. Say in one sentence that you'll ask a few quick questions first, so the first draft is about the right thing.
-3. Skip anything the person has already told you, for example what it is and who it's for when the project was just created. Ask the rest **one at a time**. Wait for each answer. Keep your own words short and friendly, and offer an example answer if the person seems unsure.
+2. **Match the questions to the size of the ask.** Most asks are small. If the person asks for something small or says it's a test, like a hello world page or a page with one message, ask no questions at all: write the brief yourself from what they said, tell them in one sentence what you understood, and start building. Only ask a question whose answer would actually change the first draft. Never ask about data, feedback or feelings for something that obviously has none of that. The full list below is for a real prototype that someone else will look at, and even then, ask at most three or four of them.
+3. When questions are needed, say in one sentence that you'll ask a couple first, so the first draft is about the right thing. Skip anything the person has already told you, for example what it is and who it's for when the project was just created. Ask the rest **one at a time**. Wait for each answer. Keep your own words short and friendly, and offer an example answer if the person seems unsure.
 4. If an answer is vague, ask one follow-up at most, then move on. If the person answers several questions at once, or pastes a whole brief, accept it and only ask about what's missing.
-5. When all questions are answered, write `docs/brief.md` with one short section per question, in the person's own words. Remove the line that says the brief is not filled in.
-6. Read the brief back as three bullet points and ask if it's right.
-7. Only then start building, using the `build-prototype` skill.
+5. Write `docs/brief.md` with one short section per question, in the person's own words, and write "not discussed" for anything you didn't ask. Remove the line that says the brief is not filled in.
+6. For a real prototype, read the brief back as three bullet points and ask if it's right. For a small one, skip this.
+7. Then start building, using the `build-prototype` skill.
 
 ## The questions
 
