@@ -4,6 +4,8 @@ These rules apply to every project built on this core. They are read by Claude, 
 
 ## How we build
 
+0. Know the profile before anything else. `.buildkit` says `profile=unset` until the person has said who it is for. Never guess it from the request, not even for something tiny. Ask once: "Is this just for you, a tool for the agency, or for a client?" Then set it as described under Choosing the profile.
+
 1. Start from the brief in `docs/brief.md`. If it says it is not filled in yet, run the `kickoff` skill first: ask its questions one at a time and write the answers there before building anything.
 2. Build every component with shadcn/ui. Use what is in `src/components/ui/`, add missing ones with `npx shadcn@latest add <name>`, and never hand-make a button, input, card or dialog. Style with Tailwind and the theme colours (`bg-primary`, `text-muted-foreground`), never hard-coded colours. Follow the `use-shadcn` skill.
 3. A prototype is a rough first draft for designers to take further. Keep it simple, readable and easy to change: React, Vite, Tailwind and shadcn/ui, nothing more unless the brief asks for it.
@@ -17,6 +19,17 @@ These rules apply to every project built on this core. They are read by Claude, 
 - Never use real personal data such as names, emails, phone numbers or personal identity numbers. Use clearly fake sample data.
 - Never add tracking, analytics or third-party scripts without it being written in the brief.
 - Never turn off or work around a check. If a check fails, fix the cause or explain why it is wrong.
+
+## Choosing the profile
+
+| The person says | Profile | Template |
+| --- | --- | --- |
+| Just for me, or a pitch or idea to show | `prototype` | template-prototype |
+| A tool the agency will use itself | `internal` | template-internal |
+| For a client, as a quick draft to show them | `prototype`, with a code name if the client is confidential | template-prototype |
+| For a client, as real delivered work | `client`. Not ready yet: say so, and suggest a prototype for now | none yet |
+
+Write it as `profile=<name>` in `.buildkit`, and record the answer in `docs/brief.md`.
 
 ## Internal tools
 

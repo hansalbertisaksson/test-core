@@ -7,12 +7,13 @@ description: Start a new prototype by asking the kickoff questions and writing t
 
 A prototype without a brief tends to become a generic page. Before building anything, have a short conversation and write down the answers.
 
-1. Say in one sentence that you'll ask a few quick questions first, so the first draft is about the right thing.
-2. Skip anything the person has already told you, for example what it is and who it's for when the project was just created. Ask the rest **one at a time**. Wait for each answer. Keep your own words short and friendly, and offer an example answer if the person seems unsure.
-3. If an answer is vague, ask one follow-up at most, then move on. If the person answers several questions at once, or pastes a whole brief, accept it and only ask about what's missing.
-4. When all questions are answered, write `docs/brief.md` with one short section per question, in the person's own words. Remove the line that says the brief is not filled in.
-5. Read the brief back as three bullet points and ask if it's right.
-6. Only then start building, using the `build-prototype` skill.
+1. If `.buildkit` says `profile=unset`, first ask: "Is this just for you, a tool for the agency, or for a client?" Set the profile as described under Choosing the profile in `.core/AGENTS.md`. Never guess it from the request.
+2. Say in one sentence that you'll ask a few quick questions first, so the first draft is about the right thing.
+3. Skip anything the person has already told you, for example what it is and who it's for when the project was just created. Ask the rest **one at a time**. Wait for each answer. Keep your own words short and friendly, and offer an example answer if the person seems unsure.
+4. If an answer is vague, ask one follow-up at most, then move on. If the person answers several questions at once, or pastes a whole brief, accept it and only ask about what's missing.
+5. When all questions are answered, write `docs/brief.md` with one short section per question, in the person's own words. Remove the line that says the brief is not filled in.
+6. Read the brief back as three bullet points and ask if it's right.
+7. Only then start building, using the `build-prototype` skill.
 
 ## The questions
 

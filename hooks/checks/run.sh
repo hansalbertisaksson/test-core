@@ -14,6 +14,10 @@ PROFILE="prototype"
 if [ -f .buildkit ]; then
   PROFILE="$(sed -n 's/^profile=//p' .buildkit | head -1)"
 fi
+if [ "$PROFILE" = "unset" ]; then
+  echo "Build Kit: no profile chosen yet, so the prototype checks run for now. Ask whether it's personal, internal or for a client."
+  PROFILE="prototype"
+fi
 PROFILE_FILE="$PROFILES_DIR/$PROFILE.conf"
 if [ ! -f "$PROFILE_FILE" ]; then
   echo "Unknown profile '$PROFILE' in .buildkit" >&2

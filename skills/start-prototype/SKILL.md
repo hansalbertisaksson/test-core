@@ -9,13 +9,15 @@ The person should never have to touch GitHub, a terminal or a settings page. You
 
 ## 1. Agree on a name
 
-Ask one question: what is it, and for whom? Then suggest a short repo name in lowercase with dashes, like `coffee-club-prototype`, and ask for a go-ahead in one message, for example: "I'll create `coffee-club-prototype` as a public repo on your GitHub, with a public live page. OK?" Their yes is the approval for step 2, so don't ask again.
+Ask what it is, and who it is for: "Is this just for you, a tool for the agency, or for a client?" Ask this even when the request seems obvious or tiny, like a hello world page. Never guess it from the wording. Pick the profile and template from the table under Choosing the profile in the core's `AGENTS.md` (fetch it from https://raw.githubusercontent.com/hansalbertisaksson/test-core/main/AGENTS.md). If it is real client delivery, say that isn't ready yet and offer a prototype instead.
+
+Then suggest a short repo name in lowercase with dashes, like `coffee-club-prototype`, and ask for a go-ahead in one message, for example: "I'll create `coffee-club-prototype` as a public repo on your GitHub, with a public live page. OK?" Their yes is the approval for step 2, so don't ask again.
 
 The repo will be **public** so it can have a live link. If the client or the project is confidential, suggest a code name instead of the client's name, and say why in one sentence.
 
 ## 2. Create it
 
-Run these steps yourself, one command at a time, and tell the person it takes a minute or two. Use the name from step 1 as `<name>`. For a tool the agency will use itself (a dashboard, a planner, an internal helper), use the template `hansalbertisaksson/template-internal`; otherwise `hansalbertisaksson/template-prototype`.
+Run these steps yourself, one command at a time, and tell the person it takes a minute or two. Use the name from step 1 as `<name>`. Use the template that goes with the profile from step 1: `hansalbertisaksson/template-internal` for `internal`, `hansalbertisaksson/template-prototype` for `prototype`.
 
 1. **Check the GitHub CLI.** `gh auth status`. If `gh` is missing, ask the person if you may run `brew install gh`. If they are not logged in, ask them to type `! gh auth login` here, choose GitHub.com, HTTPS and "Login with a web browser". It happens only once.
 2. **Check Node.** `npm --version`. If it is missing, ask if you may run `brew install node`.
@@ -36,7 +38,8 @@ Run these steps yourself, one command at a time, and tell the person it takes a 
    cd ~/GitHub/<name> && git config credential.helper '!gh auth git-credential'
    ```
 
-5. **Set it up and switch on the live link:** `cd ~/GitHub/<name> && ./scripts/setup.sh && .core/scripts/go-live.sh`. It prints `READY` with the links, or a line starting with `STOPPED`.
+5. **Record the profile.** If `.buildkit` says `profile=unset`, write the profile from step 1 into it (`profile=prototype`) and commit it with a short message.
+6. **Set it up and switch on the live link:** `cd ~/GitHub/<name> && ./scripts/setup.sh && .core/scripts/go-live.sh`. It prints `READY` with the links, or a line starting with `STOPPED`.
 
 If a step fails, show the person the actual error in plain words, fix what you can, and run the remaining steps again. Every step is safe to repeat.
 

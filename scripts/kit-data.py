@@ -68,13 +68,18 @@ if os.path.isfile(report_path):
         check, mode, result, message = (line.split("\t") + [""] * 4)[:4]
         results[check] = {"result": result, "message": message.strip()}
 
+shown_profile = profile
+if profile == "unset":
+    # Nobody has said who it is for yet. The prototype checks run until they do.
+    profile, shown_profile = "prototype", "not chosen yet"
+
 checks = [
     {**row, "description": check_description(row["check"]), **results.get(row["check"], {"result": "not run", "message": ""})}
     for row in profiles.get(profile, [])
 ]
 
 data = {
-    "profile": profile,
+    "profile": shown_profile,
     "profiles": profiles,
     "house_rules": read(os.path.join(core, "AGENTS.md")),
     "skills": skills,

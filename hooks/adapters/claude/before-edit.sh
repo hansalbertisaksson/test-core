@@ -13,7 +13,12 @@ case "$rel" in
     echo "Build Kit: .core/ is the shared core and read-only. Suggest the change instead of making it." >&2
     exit 2 ;;
   src/*|index.html|site/*)
-    if [ "$("$dir/brief-status.sh")" = "missing" ]; then
+    status="$("$dir/brief-status.sh")"
+    if [ "$status" = "profile" ]; then
+      echo "Build Kit: nobody has said who this is for yet, so the pages are locked. Ask once: is it just for you, a tool for the agency, or for a client? Set profile= in .buildkit as in .core/AGENTS.md, then run the kickoff skill." >&2
+      exit 2
+    fi
+    if [ "$status" = "missing" ]; then
       echo "Build Kit: the brief is not written yet, so the pages are locked. Run the kickoff skill (.core/skills/kickoff/SKILL.md) and ask the questions first." >&2
       exit 2
     fi ;;
